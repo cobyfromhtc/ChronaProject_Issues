@@ -1,0 +1,1668 @@
+/* ========================================
+   Bold UI Variant — Chrona Design System
+   Vibrant Discord/Spotify-inspired theme
+   Premium, high-energy, modern UI
+
+   Primary:   Deep Violet/Indigo #7c3aed / hsl(263 70% 58%)
+   Accent:    Bright Rose/Pink   #f43f5e / hsl(350 80% 60%)
+   Surface:   Deep violet-black          hsl(265 40% 5%)
+   ======================================== */
+
+/* ========================================
+   CSS Custom Properties Override
+   ======================================== */
+
+.ui-bold {
+  --radius: 0.75rem;
+
+  /* Core Colors — Deep violet-black */
+  --background: 265 40% 5%;
+  --foreground: 260 20% 93%;
+
+  /* Card & Surface — Violet-tinted dark */
+  --card: 265 35% 9%;
+  --card-foreground: 260 20% 93%;
+  --popover: 265 35% 9%;
+  --popover-foreground: 260 20% 93%;
+
+  /* Primary — Deep Violet/Indigo */
+  --primary: 263 70% 58%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary — Deep violet slate */
+  --secondary: 265 30% 16%;
+  --secondary-foreground: 260 20% 80%;
+
+  /* Muted — Dark violet silver */
+  --muted: 265 25% 13%;
+  --muted-foreground: 260 15% 50%;
+
+  /* Accent — Bright Rose/Pink */
+  --accent: 350 80% 60%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+
+  /* Border & Input — Violet borders */
+  --border: 263 70% 58% / 0.18;
+  --input: 263 70% 58% / 0.1;
+  --ring: 263 70% 58% / 0.45;
+
+  /* Chart Colors — Bold vibrant palette */
+  --chart-1: 263 70% 58%;
+  --chart-2: 350 80% 60%;
+  --chart-3: 170 70% 48%;
+  --chart-4: 45 96% 56%;
+  --chart-5: 220 80% 60%;
+
+  /* Sidebar */
+  --sidebar: 265 38% 4%;
+  --sidebar-foreground: 260 20% 93%;
+  --sidebar-primary: 263 70% 58%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 263 70% 58% / 0.15;
+  --sidebar-accent-foreground: 260 20% 93%;
+  --sidebar-border: 263 70% 58% / 0.1;
+  --sidebar-ring: 263 70% 58% / 0.45;
+}
+
+.ui-bold.dark {
+  --background: 265 40% 5%;
+  --foreground: 260 20% 93%;
+  --card: 265 35% 9%;
+  --card-foreground: 260 20% 93%;
+  --popover: 265 35% 9%;
+  --popover-foreground: 260 20% 93%;
+  --primary: 263 70% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 265 30% 16%;
+  --secondary-foreground: 260 20% 80%;
+  --muted: 265 25% 13%;
+  --muted-foreground: 260 15% 50%;
+  --accent: 350 80% 60%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --border: 263 70% 58% / 0.18;
+  --input: 263 70% 58% / 0.1;
+  --ring: 263 70% 58% / 0.45;
+  --sidebar: 265 38% 4%;
+  --sidebar-foreground: 260 20% 93%;
+  --sidebar-primary: 263 70% 58%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 263 70% 58% / 0.15;
+  --sidebar-accent-foreground: 260 20% 93%;
+  --sidebar-border: 263 70% 58% / 0.1;
+  --sidebar-ring: 263 70% 58% / 0.45;
+  --chart-1: 263 70% 58%;
+  --chart-2: 350 80% 60%;
+  --chart-3: 170 70% 48%;
+  --chart-4: 45 96% 56%;
+  --chart-5: 220 80% 60%;
+}
+
+/* ========================================
+   Custom Selection Colors
+   ======================================== */
+
+.ui-bold ::selection {
+  background: hsl(263 70% 58% / 0.4);
+  color: hsl(260 20% 98%);
+}
+
+.ui-bold ::-moz-selection {
+  background: hsl(263 70% 58% / 0.4);
+  color: hsl(260 20% 98%);
+}
+
+/* ========================================
+   Custom Scrollbar — Violet/Rose Themed
+   ======================================== */
+
+.ui-bold ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.ui-bold ::-webkit-scrollbar-track {
+  background: hsl(263 70% 58% / 0.06);
+  border-radius: 4px;
+}
+
+.ui-bold ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #f43f5e);
+  border-radius: 4px;
+}
+
+.ui-bold ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d28d9, #e11d48);
+}
+
+/* Custom scrollbar class for modals */
+.ui-bold .custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed hsl(263 70% 58% / 0.1);
+}
+
+.ui-bold .custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ui-bold .custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(263 70% 58% / 0.08);
+  border-radius: 5px;
+  border: 1px solid hsl(263 70% 58% / 0.12);
+}
+
+.ui-bold .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #f43f5e);
+  border-radius: 5px;
+  border: 2px solid hsl(263 70% 58% / 0.08);
+  min-height: 40px;
+}
+
+.ui-bold .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6d28d9, #e11d48);
+}
+
+.ui-bold .custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ========================================
+   Bold Keyframe Animations
+   ======================================== */
+
+@keyframes fadeSlideIn-bold {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft-bold {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn-bold {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes messageIn-bold {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse-status-bold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(170 70% 48% / 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 6px hsl(170 70% 48% / 0);
+  }
+}
+
+@keyframes progressBar-bold {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInScale-bold {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes gradient-shift-bold {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes skeleton-shimmer-bold {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes sparkle-float-bold {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-5px) rotate(45deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes persona-gradient-bold {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bold-glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bold-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.7;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.7;
+  }
+}
+
+@keyframes bold-shimmer-sweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   Background & Animated Gradient Overrides
+   ======================================== */
+
+/* Background with rich violet gradient overlays */
+.ui-bold .persona-bg {
+  background:
+    radial-gradient(ellipse at 15% 10%, hsl(263 70% 58% / 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, hsl(350 80% 60% / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, hsl(263 70% 58% / 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse at 70% 15%, hsl(350 80% 60% / 0.04) 0%, transparent 45%),
+    linear-gradient(180deg, hsl(265 40% 5%) 0%, hsl(265 35% 7%) 45%, hsl(265 38% 5%) 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Animated gradient — bold flowing violet-rose effect */
+.ui-bold .persona-gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    hsl(263 70% 58% / 0.18),
+    hsl(350 80% 60% / 0.1),
+    hsl(263 70% 58% / 0.06),
+    hsl(350 80% 60% / 0.14),
+    hsl(263 70% 58% / 0.1)
+  );
+  background-size: 500% 500%;
+  animation: bold-gradient-flow 22s ease infinite;
+}
+
+/* ========================================
+   Glass & Card Effects
+   ======================================== */
+
+.ui-bold .persona-glass {
+  background: hsl(265 35% 9% / 0.75);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid hsl(263 70% 58% / 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ui-bold .persona-glass-light {
+  background: hsl(265 30% 16% / 0.5);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  border: 1px solid hsl(263 70% 58% / 0.1);
+}
+
+/* Card — deep violet surface with bold gradient top border */
+.ui-bold .persona-card {
+  background: linear-gradient(145deg, hsl(265 35% 9% / 0.97) 0%, hsl(263 30% 12% / 0.97) 100%);
+  border: 1px solid hsl(263 70% 58% / 0.15);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Bold gradient top border — violet to rose */
+.ui-bold .persona-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.7), hsl(350 80% 60% / 0.6), hsl(263 70% 58% / 0.4));
+}
+
+/* Card hover — bold lift with strong shadow */
+.ui-bold .persona-card-hover {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-bold .persona-card-hover:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: hsl(263 70% 58% / 0.35);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 8px 32px hsl(263 70% 58% / 0.12),
+    0 0 0 1px hsl(263 70% 58% / 0.1),
+    inset 0 1px 0 hsl(263 70% 58% / 0.1);
+}
+
+/* ========================================
+   Button Styles — Bold, Strong, Gradient Violet→Rose
+   ======================================== */
+
+/* Primary button — strong violet to indigo gradient */
+.ui-bold .btn-persona {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(255 65% 52%) 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 4px 14px hsl(263 70% 58% / 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.01em;
+}
+
+/* Bold shimmer sweep on button hover */
+.ui-bold .btn-persona::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-bold .btn-persona:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 8px 28px hsl(263 70% 58% / 0.35),
+    0 4px 12px hsl(350 80% 60% / 0.12),
+    0 0 0 1px hsl(263 70% 58% / 0.3);
+  background: linear-gradient(135deg, hsl(263 75% 62%) 0%, hsl(255 70% 56%) 100%);
+}
+
+.ui-bold .btn-persona:hover::before {
+  left: 120%;
+}
+
+.ui-bold .btn-persona:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow:
+    0 2px 8px hsl(263 70% 58% / 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary button — violet tinted with strong border */
+.ui-bold .btn-persona-secondary {
+  background: hsl(263 70% 58% / 0.1);
+  color: hsl(263 70% 70%);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid hsl(263 70% 58% / 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-bold .btn-persona-secondary:hover {
+  background: hsl(263 70% 58% / 0.18);
+  border-color: hsl(263 70% 58% / 0.5);
+  color: hsl(263 75% 78%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px hsl(263 70% 58% / 0.15);
+}
+
+.ui-bold .btn-persona-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Ghost button */
+.ui-bold .btn-persona-ghost {
+  background: transparent;
+  color: hsl(260 15% 60%);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-bold .btn-persona-ghost:hover {
+  background: hsl(263 70% 58% / 0.1);
+  color: hsl(263 70% 70%);
+  transform: scale(1.02);
+}
+
+.ui-bold .btn-persona-ghost:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   Electron Top Bar
+   ======================================== */
+
+.ui-bold .topbar {
+  border-bottom: 1px solid hsl(263 70% 58% / 0.12);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4),
+              0 1px 4px hsl(263 70% 58% / 0.06);
+}
+
+.ui-bold .window-btn,
+.ui-bold .window-btn-red {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid hsl(263 70% 58% / 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: hsl(260 20% 90%);
+  background: hsl(265 35% 9% / 0.6);
+}
+
+.ui-bold .window-btn:hover,
+.ui-bold .window-btn-red:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 12px hsl(263 70% 58% / 0.2);
+  border-color: hsl(263 70% 58% / 0.3);
+  background: hsl(263 70% 58% / 0.15);
+}
+
+.ui-bold .window-btn-red {
+  color: #fca5a5;
+}
+
+.ui-bold .window-btn-red:hover {
+  background: hsl(350 80% 60% / 0.35);
+  color: white;
+  box-shadow: 0 4px 16px hsl(350 80% 60% / 0.3);
+  border-color: hsl(350 80% 60% / 0.4);
+}
+
+.ui-bold .window-btn,
+.ui-bold .window-btn-red {
+  -webkit-app-region: no-drag;
+}
+
+/* ========================================
+   Tab Styles
+   ======================================== */
+
+.ui-bold .persona-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: hsl(263 70% 58% / 0.06);
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(263 70% 58% / 0.1);
+}
+
+.ui-bold .persona-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: hsl(260 15% 55%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ui-bold .persona-tab:hover {
+  background: hsl(263 70% 58% / 0.12);
+  color: hsl(260 20% 82%);
+}
+
+.ui-bold .persona-tab-active {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(255 65% 52%) 100%);
+  color: white;
+  box-shadow: 0 4px 14px hsl(263 70% 58% / 0.3),
+              0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   Category Pills
+   ======================================== */
+
+.ui-bold .persona-pill {
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: hsl(263 70% 58% / 0.08);
+  color: hsl(260 15% 60%);
+  border: 1.5px solid hsl(263 70% 58% / 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ui-bold .persona-pill:hover {
+  background: hsl(263 70% 58% / 0.16);
+  border-color: hsl(263 70% 58% / 0.4);
+  color: hsl(263 70% 72%);
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px hsl(263 70% 58% / 0.1);
+}
+
+.ui-bold .persona-pill-active {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(255 65% 52%) 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px hsl(263 70% 58% / 0.3),
+              0 2px 6px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+}
+
+/* ========================================
+   Input Styles — Violet-tinted with bold focus ring
+   ======================================== */
+
+.ui-bold .persona-input {
+  background: hsl(263 70% 58% / 0.05);
+  border: 1.5px solid hsl(263 70% 58% / 0.12);
+  border-radius: 0.75rem;
+  color: hsl(260 20% 93%);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+}
+
+.ui-bold .persona-input::placeholder {
+  color: hsl(260 15% 40%);
+  opacity: 0.6;
+}
+
+.ui-bold .persona-input:focus {
+  outline: none;
+  border-color: hsl(263 70% 58% / 0.6);
+  box-shadow:
+    0 0 0 3px hsl(263 70% 58% / 0.15),
+    0 4px 16px hsl(263 70% 58% / 0.1);
+  background: hsl(263 70% 58% / 0.08);
+}
+
+/* Select dropdown styling */
+.ui-bold .persona-input option,
+.ui-bold select option {
+  background: hsl(265 35% 9%);
+  color: hsl(260 20% 93%);
+  padding: 0.5rem;
+}
+
+.ui-bold .persona-input option:hover,
+.ui-bold .persona-input option:checked,
+.ui-bold select option:hover,
+.ui-bold select option:checked {
+  background: hsl(263 70% 58% / 0.3);
+  color: white;
+}
+
+/* Select dropdown arrow — violet themed */
+.ui-bold select.persona-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+.ui-bold select[class*="purple"],
+.ui-bold select[class*="bg-purple"] {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c3aed' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* ========================================
+   Sidebar — Deep Violet Gradient with Bold Glow
+   ======================================== */
+
+.ui-bold .persona-sidebar {
+  background: linear-gradient(180deg, hsl(265 38% 4%) 0%, hsl(265 35% 6%) 50%, hsl(265 38% 4%) 100%);
+  border-right: 1px solid hsl(263 70% 58% / 0.08);
+  position: relative;
+}
+
+/* Bold glow at top of sidebar */
+.ui-bold .persona-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  background:
+    radial-gradient(ellipse at 30% 0%, hsl(263 70% 58% / 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 0%, hsl(350 80% 60% / 0.08) 0%, transparent 45%);
+  pointer-events: none;
+  animation: bold-glow-pulse 6s ease-in-out infinite;
+}
+
+/* Sidebar navigation item */
+.ui-bold .persona-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  color: hsl(260 15% 55%);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Active indicator bar — violet to rose gradient */
+.ui-bold .persona-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, hsl(263 70% 58%), hsl(350 80% 60%));
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 4px 4px 0;
+}
+
+.ui-bold .persona-nav-item:hover {
+  background: hsl(263 70% 58% / 0.1);
+  color: hsl(260 20% 82%);
+  transform: translateX(2px);
+}
+
+.ui-bold .persona-nav-item-active {
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.15) 0%, hsl(350 80% 60% / 0.06) 100%);
+  color: hsl(260 20% 95%);
+  box-shadow: 0 2px 8px hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .persona-nav-item-active::before {
+  transform: scaleY(1);
+}
+
+/* DM item in sidebar */
+.ui-bold .persona-dm-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.ui-bold .persona-dm-item:hover {
+  background: hsl(263 70% 58% / 0.1);
+  transform: translateX(2px);
+}
+
+.ui-bold .persona-dm-item-active {
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.15) 0%, hsl(350 80% 60% / 0.06) 100%);
+  border-left: 3px solid hsl(263 70% 58%);
+  box-shadow: 0 2px 8px hsl(263 70% 58% / 0.06);
+}
+
+/* ========================================
+   Online Status Indicator
+   ======================================== */
+
+.ui-bold .persona-status {
+  position: relative;
+  display: inline-block;
+}
+
+.ui-bold .persona-status-online::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 13px;
+  height: 13px;
+  background: hsl(170 70% 48%);
+  border: 2.5px solid hsl(265 35% 9%);
+  border-radius: 50%;
+  animation: pulse-status-bold 2s infinite;
+  z-index: 10;
+}
+
+.ui-bold .persona-status-offline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 13px;
+  height: 13px;
+  background: hsl(265 15% 35%);
+  border: 2.5px solid hsl(265 35% 9%);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+/* ========================================
+   Avatar Styles
+   ======================================== */
+
+.ui-bold .persona-avatar {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Violet to rose ring on hover */
+.ui-bold .persona-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(263 70% 58%), hsl(350 80% 60%), hsl(263 70% 58%));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ui-bold .persona-avatar:hover::after {
+  opacity: 1;
+}
+
+.ui-bold .persona-avatar-glow {
+  box-shadow: 0 0 24px hsl(263 70% 58% / 0.3),
+              0 0 48px hsl(350 80% 60% / 0.1);
+}
+
+/* ========================================
+   Section Headers
+   ======================================== */
+
+.ui-bold .persona-section-header {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: hsl(260 15% 45%);
+}
+
+/* ========================================
+   Search Bar
+   ======================================== */
+
+.ui-bold .persona-search {
+  background: hsl(263 70% 58% / 0.06);
+  border: 1.5px solid hsl(263 70% 58% / 0.1);
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(260 15% 45%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+}
+
+.ui-bold .persona-search:hover {
+  background: hsl(263 70% 58% / 0.12);
+  border-color: hsl(263 70% 58% / 0.25);
+  color: hsl(260 20% 65%);
+  box-shadow: 0 4px 16px hsl(263 70% 58% / 0.08);
+}
+
+/* ========================================
+   User Panel (bottom of sidebar)
+   ======================================== */
+
+.ui-bold .persona-user-panel {
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.08) 0%, hsl(350 80% 60% / 0.04) 50%, hsl(263 70% 58% / 0.02) 100%);
+  border-top: 1px solid hsl(263 70% 58% / 0.1);
+  padding: 0.75rem;
+}
+
+/* ========================================
+   Badge
+   ======================================== */
+
+.ui-bold .persona-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ui-bold .persona-badge-primary {
+  background: hsl(263 70% 58% / 0.18);
+  color: hsl(263 70% 75%);
+  border: 1px solid hsl(263 70% 58% / 0.3);
+}
+
+.ui-bold .persona-badge-success {
+  background: hsl(170 70% 48% / 0.18);
+  color: hsl(170 70% 68%);
+  border: 1px solid hsl(170 70% 48% / 0.3);
+}
+
+.ui-bold .persona-badge-accent {
+  background: hsl(350 80% 60% / 0.18);
+  color: hsl(350 75% 75%);
+  border: 1px solid hsl(350 80% 60% / 0.3);
+}
+
+/* ========================================
+   Gradient Text — Bold Violet→Rose
+   ======================================== */
+
+.ui-bold .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(263 70% 58%), hsl(350 80% 60%), hsl(263 70% 58%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% auto;
+  animation: gradient-shift-bold 4s ease infinite;
+}
+
+/* ========================================
+   Loading States
+   ======================================== */
+
+.ui-bold .persona-skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(263 70% 58% / 0.06) 0%,
+    hsl(350 80% 60% / 0.12) 25%,
+    hsl(263 70% 58% / 0.08) 50%,
+    hsl(350 80% 60% / 0.12) 75%,
+    hsl(263 70% 58% / 0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer-bold 2s infinite;
+  border-radius: 0.75rem;
+}
+
+/* ========================================
+   Decorative Elements — Sparkles with violet/rose
+   ======================================== */
+
+.ui-bold .persona-sparkle {
+  position: relative;
+}
+
+.ui-bold .persona-sparkle::before,
+.ui-bold .persona-sparkle::after {
+  content: '✦';
+  position: absolute;
+  font-size: 0.5rem;
+  opacity: 0.5;
+  animation: sparkle-float-bold 3s ease-in-out infinite;
+}
+
+.ui-bold .persona-sparkle::before {
+  top: -0.25rem;
+  right: -0.25rem;
+  animation-delay: 0s;
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .persona-sparkle::after {
+  bottom: -0.25rem;
+  left: -0.25rem;
+  animation-delay: 1.5s;
+  color: hsl(350 80% 60%);
+}
+
+/* Divider — violet/rose gradient */
+.ui-bold .persona-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(263 70% 58% / 0.3), hsl(350 80% 60% / 0.2), transparent);
+  margin: 1rem 0;
+}
+
+/* ========================================
+   Animations — Bold, Snappy
+   ======================================== */
+
+.ui-bold .persona-animate-in {
+  animation: fadeSlideIn-bold 0.35s ease-out;
+}
+
+.ui-bold .persona-animate-slide {
+  animation: slideInLeft-bold 0.35s ease-out;
+}
+
+.ui-bold .persona-animate-scale {
+  animation: scaleIn-bold 0.25s ease-out;
+}
+
+/* Message bubble */
+.ui-bold .persona-message {
+  animation: messageIn-bold 0.25s ease-out;
+}
+
+/* ========================================
+   Empty States
+   ======================================== */
+
+.ui-bold .persona-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.ui-bold .persona-empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.1), hsl(350 80% 60% / 0.06));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: hsl(263 70% 58%);
+  box-shadow: 0 8px 24px hsl(263 70% 58% / 0.12);
+}
+
+/* ========================================
+   Modal Styles — Bold Glassmorphism with violet/rose
+   ======================================== */
+
+.ui-bold .persona-modal {
+  background: rgba(14, 10, 24, 0.9);
+  backdrop-filter: blur(32px) saturate(1.5);
+  -webkit-backdrop-filter: blur(32px) saturate(1.5);
+  border: 1px solid hsl(263 70% 58% / 0.18);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 8px 32px hsl(263 70% 58% / 0.08),
+    inset 0 1px 0 hsl(263 70% 58% / 0.08);
+}
+
+/* Bold glow at top of modal */
+.ui-bold .persona-modal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background:
+    radial-gradient(ellipse at 30% 0%, hsl(263 70% 58% / 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 0%, hsl(350 80% 60% / 0.06) 0%, transparent 45%);
+  pointer-events: none;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+/* Dedicated Glassmorphism Modal class */
+.ui-bold .glassmorphism-modal {
+  background: rgba(14, 10, 24, 0.9);
+  backdrop-filter: blur(32px) saturate(1.5);
+  -webkit-backdrop-filter: blur(32px) saturate(1.5);
+  border: 1px solid hsl(263 70% 58% / 0.18);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 8px 32px hsl(263 70% 58% / 0.08),
+    inset 0 1px 0 hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .glassmorphism-modal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background:
+    radial-gradient(ellipse at 30% 0%, hsl(263 70% 58% / 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 0%, hsl(350 80% 60% / 0.06) 0%, transparent 45%);
+  pointer-events: none;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.ui-bold .persona-modal-header {
+  border-bottom: 1px solid hsl(263 70% 58% / 0.12);
+  padding: 1.5rem;
+}
+
+.ui-bold .persona-modal-content {
+  padding: 1.5rem;
+}
+
+/* ========================================
+   Glassmorphism Top Bar
+   ======================================== */
+
+.ui-bold .glassmorphism-topbar {
+  background: rgba(14, 10, 24, 0.82);
+  backdrop-filter: blur(24px) saturate(1.35);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+  border-bottom: 1px solid hsl(263 70% 58% / 0.1);
+}
+
+/* ========================================
+   Tooltip
+   ======================================== */
+
+.ui-bold .persona-tooltip {
+  background: hsl(265 30% 14%);
+  border: 1px solid hsl(263 70% 58% / 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: hsl(260 20% 93%);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5),
+              0 4px 12px hsl(263 70% 58% / 0.08);
+}
+
+/* ========================================
+   Favourite Star
+   ======================================== */
+
+.ui-bold .persona-favourite {
+  color: hsl(45 96% 56%);
+  filter: drop-shadow(0 0 8px hsl(45 96% 56% / 0.6));
+}
+
+/* ========================================
+   Responsive Utilities
+   ======================================== */
+
+@media (max-width: 768px) {
+  .ui-bold .persona-sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .ui-bold .btn-persona {
+    padding: 0.625rem 1.25rem;
+  }
+
+  .ui-bold .persona-card {
+    border-radius: 0.5rem;
+  }
+}
+
+/* ========================================
+   THEME OVERRIDES — Midnight Theme
+   Bold UI under .theme-midnight
+
+   When Bold UI is active with midnight theme,
+   we use deeper indigo/violet tones to match
+   the midnight aesthetic while keeping the
+   bold visual weight and saturation.
+   ======================================== */
+
+.ui-bold .theme-midnight .persona-bg,
+.ui-bold.theme-midnight .persona-bg {
+  background:
+    radial-gradient(ellipse at 15% 10%, hsl(263 70% 58% / 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, hsl(350 80% 60% / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, hsl(255 65% 52% / 0.06) 0%, transparent 65%),
+    linear-gradient(180deg, hsl(250 40% 5%) 0%, hsl(250 35% 7%) 45%, hsl(250 38% 5%) 100%);
+  background-attachment: fixed;
+}
+
+.ui-bold .theme-midnight .persona-card,
+.ui-bold.theme-midnight .persona-card {
+  background: linear-gradient(145deg, hsl(255 35% 9% / 0.97) 0%, hsl(250 30% 12% / 0.97) 100%);
+  border-color: hsl(263 70% 58% / 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.ui-bold .theme-midnight .persona-card::before,
+.ui-bold.theme-midnight .persona-card::before {
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.6), hsl(255 65% 52% / 0.5), hsl(350 80% 60% / 0.3));
+}
+
+.ui-bold .theme-midnight .persona-card-hover:hover,
+.ui-bold.theme-midnight .persona-card-hover:hover {
+  border-color: hsl(263 70% 58% / 0.4);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.55),
+    0 8px 32px hsl(263 70% 58% / 0.12),
+    inset 0 1px 0 hsl(263 70% 58% / 0.1);
+}
+
+.ui-bold .theme-midnight .persona-glass,
+.ui-bold.theme-midnight .persona-glass {
+  background: hsl(255 35% 9% / 0.75);
+  border-color: hsl(263 70% 58% / 0.15);
+}
+
+.ui-bold .theme-midnight .btn-persona,
+.ui-bold.theme-midnight .btn-persona {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(255 65% 52%) 100%);
+  box-shadow: 0 4px 14px hsl(263 70% 58% / 0.25);
+}
+
+.ui-bold .theme-midnight .btn-persona:hover,
+.ui-bold.theme-midnight .btn-persona:hover {
+  box-shadow:
+    0 8px 28px hsl(263 70% 58% / 0.35),
+    0 4px 12px hsl(255 65% 52% / 0.12);
+  background: linear-gradient(135deg, hsl(263 75% 62%) 0%, hsl(255 70% 56%) 100%);
+}
+
+.ui-bold .theme-midnight .persona-gradient-text,
+.ui-bold.theme-midnight .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(263 70% 58%), hsl(255 65% 52%), hsl(350 80% 60%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 300% auto;
+  animation: gradient-shift-bold 4s ease infinite;
+}
+
+.ui-bold .theme-midnight .persona-nav-item::before,
+.ui-bold.theme-midnight .persona-nav-item::before {
+  background: linear-gradient(180deg, hsl(263 70% 58%), hsl(255 65% 52%));
+}
+
+/* ========================================
+   THEME OVERRIDES — Forest Theme
+   Bold UI under .theme-forest
+
+   When Bold UI is active with forest theme,
+   we blend violet/rose with deep emerald
+   undertones for a rich, luxurious feel.
+   ======================================== */
+
+.ui-bold .theme-forest .persona-bg,
+.ui-bold.theme-forest .persona-bg {
+  background:
+    radial-gradient(ellipse at 15% 10%, hsl(263 70% 58% / 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, hsl(350 80% 60% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, hsl(170 70% 48% / 0.05) 0%, transparent 65%),
+    linear-gradient(180deg, hsl(160 25% 5%) 0%, hsl(155 22% 7%) 45%, hsl(160 25% 5%) 100%);
+  background-attachment: fixed;
+}
+
+.ui-bold .theme-forest .persona-card,
+.ui-bold.theme-forest .persona-card {
+  background: linear-gradient(145deg, hsl(160 22% 9% / 0.97) 0%, hsl(155 20% 12% / 0.97) 100%);
+  border-color: hsl(263 70% 58% / 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.ui-bold .theme-forest .persona-card::before,
+.ui-bold.theme-forest .persona-card::before {
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.5), hsl(170 70% 48% / 0.4), hsl(350 80% 60% / 0.3));
+}
+
+.ui-bold .theme-forest .persona-card-hover:hover,
+.ui-bold.theme-forest .persona-card-hover:hover {
+  border-color: hsl(263 70% 58% / 0.35);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 8px 32px hsl(263 70% 58% / 0.1),
+    inset 0 1px 0 hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-forest .persona-glass,
+.ui-bold.theme-forest .persona-glass {
+  background: hsl(160 22% 9% / 0.75);
+  border-color: hsl(263 70% 58% / 0.12);
+}
+
+.ui-bold .theme-forest .btn-persona,
+.ui-bold.theme-forest .btn-persona {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(170 70% 48%) 100%);
+  box-shadow: 0 4px 14px hsl(263 70% 58% / 0.2);
+}
+
+.ui-bold .theme-forest .btn-persona:hover,
+.ui-bold.theme-forest .btn-persona:hover {
+  box-shadow:
+    0 8px 28px hsl(263 70% 58% / 0.3),
+    0 4px 12px hsl(170 70% 48% / 0.12);
+  background: linear-gradient(135deg, hsl(263 75% 62%) 0%, hsl(170 75% 52%) 100%);
+}
+
+.ui-bold .theme-forest .persona-gradient-text,
+.ui-bold.theme-forest .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(263 70% 58%), hsl(170 70% 48%), hsl(350 80% 60%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 300% auto;
+  animation: gradient-shift-bold 4s ease infinite;
+}
+
+.ui-bold .theme-forest .persona-nav-item::before,
+.ui-bold.theme-forest .persona-nav-item::before {
+  background: linear-gradient(180deg, hsl(263 70% 58%), hsl(170 70% 48%));
+}
+
+/* ========================================
+   THEME OVERRIDES — Light Theme
+   Bold UI under .theme-light
+
+   When Bold UI is active with light theme,
+   we use rich violet/rose on light surfaces
+   for a bold, premium light-mode experience.
+   ======================================== */
+
+.ui-bold .theme-light .persona-bg,
+.ui-bold.theme-light .persona-bg {
+  background:
+    radial-gradient(ellipse at 15% 10%, hsl(263 70% 58% / 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, hsl(350 80% 60% / 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, hsl(260 15% 97%) 0%, hsl(260 12% 95%) 45%, hsl(260 15% 97%) 100%);
+  background-attachment: fixed;
+}
+
+.ui-bold .theme-light .persona-card,
+.ui-bold.theme-light .persona-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.93) 0%, rgba(248, 245, 255, 0.93) 100%);
+  border-color: hsl(263 70% 58% / 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.ui-bold .theme-light .persona-card::before,
+.ui-bold.theme-light .persona-card::before {
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.4), hsl(350 80% 60% / 0.3), hsl(263 70% 58% / 0.2));
+  height: 3px;
+}
+
+.ui-bold .theme-light .persona-card-hover:hover,
+.ui-bold.theme-light .persona-card-hover:hover {
+  border-color: hsl(263 70% 58% / 0.25);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 32px hsl(263 70% 58% / 0.06);
+  transform: translateY(-5px) scale(1.01);
+}
+
+.ui-bold .theme-light .persona-glass,
+.ui-bold.theme-light .persona-glass {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: hsl(263 70% 58% / 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.ui-bold .theme-light .persona-glass-light,
+.ui-bold.theme-light .persona-glass-light {
+  background: rgba(248, 245, 255, 0.65);
+  border-color: hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-light .btn-persona,
+.ui-bold.theme-light .btn-persona {
+  background: linear-gradient(135deg, hsl(263 70% 58%) 0%, hsl(255 65% 52%) 100%);
+  box-shadow: 0 4px 14px hsl(263 70% 58% / 0.2);
+}
+
+.ui-bold .theme-light .btn-persona:hover,
+.ui-bold.theme-light .btn-persona:hover {
+  box-shadow:
+    0 8px 28px hsl(263 70% 58% / 0.25),
+    0 4px 12px hsl(350 80% 60% / 0.1);
+  background: linear-gradient(135deg, hsl(263 75% 62%) 0%, hsl(255 70% 56%) 100%);
+}
+
+.ui-bold .theme-light .persona-gradient-text,
+.ui-bold.theme-light .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(263 70% 58%), hsl(350 80% 60%), hsl(263 70% 58%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 300% auto;
+  animation: gradient-shift-bold 4s ease infinite;
+}
+
+.ui-bold .theme-light .persona-nav-item::before,
+.ui-bold.theme-light .persona-nav-item::before {
+  background: linear-gradient(180deg, hsl(263 70% 58%), hsl(350 80% 60%));
+}
+
+.ui-bold .theme-light .persona-modal,
+.ui-bold.theme-light .persona-modal,
+.ui-bold .theme-light .glassmorphism-modal,
+.ui-bold.theme-light .glassmorphism-modal {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: hsl(263 70% 58% / 0.12);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.1),
+    0 8px 32px hsl(263 70% 58% / 0.04);
+}
+
+.ui-bold .theme-light .persona-modal::after,
+.ui-bold.theme-light .persona-modal::after,
+.ui-bold .theme-light .glassmorphism-modal::after,
+.ui-bold.theme-light .glassmorphism-modal::after {
+  background:
+    radial-gradient(ellipse at 30% 0%, hsl(263 70% 58% / 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 0%, hsl(350 80% 60% / 0.03) 0%, transparent 45%);
+}
+
+.ui-bold .theme-light .persona-sidebar,
+.ui-bold.theme-light .persona-sidebar {
+  background: linear-gradient(180deg, hsl(260 15% 95%) 0%, hsl(260 12% 93%) 100%);
+  border-right-color: hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-light .persona-sidebar::before,
+.ui-bold.theme-light .persona-sidebar::before {
+  background:
+    radial-gradient(ellipse at 30% 0%, hsl(263 70% 58% / 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 0%, hsl(350 80% 60% / 0.03) 0%, transparent 45%);
+}
+
+.ui-bold .theme-light .persona-gradient-animated,
+.ui-bold.theme-light .persona-gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    hsl(263 70% 58% / 0.1),
+    hsl(350 80% 60% / 0.06),
+    hsl(263 70% 58% / 0.04),
+    hsl(350 80% 60% / 0.08)
+  );
+  animation: bold-gradient-flow 22s ease infinite;
+}
+
+.ui-bold .theme-light .persona-status-online::after,
+.ui-bold.theme-light .persona-status-online::after {
+  border-color: hsl(260 15% 95%);
+}
+
+.ui-bold .theme-light .persona-status-offline::after,
+.ui-bold.theme-light .persona-status-offline::after {
+  border-color: hsl(260 15% 95%);
+}
+
+.ui-bold .theme-light .persona-input,
+.ui-bold.theme-light .persona-input {
+  background: hsl(263 70% 58% / 0.03);
+  border-color: hsl(263 70% 58% / 0.1);
+  color: hsl(260 20% 15%);
+}
+
+.ui-bold .theme-light .persona-input::placeholder,
+.ui-bold.theme-light .persona-input::placeholder {
+  color: hsl(260 10% 55%);
+}
+
+.ui-bold .theme-light .persona-input:focus,
+.ui-bold.theme-light .persona-input:focus {
+  border-color: hsl(263 70% 58% / 0.5);
+  box-shadow:
+    0 0 0 3px hsl(263 70% 58% / 0.1),
+    0 4px 16px hsl(263 70% 58% / 0.06);
+}
+
+.ui-bold .theme-light .persona-tooltip,
+.ui-bold.theme-light .persona-tooltip {
+  background: hsl(260 15% 97%);
+  border-color: hsl(263 70% 58% / 0.15);
+  color: hsl(260 20% 15%);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08),
+              0 4px 12px hsl(263 70% 58% / 0.04);
+}
+
+.ui-bold .theme-light .persona-skeleton,
+.ui-bold.theme-light .persona-skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(263 70% 58% / 0.04) 0%,
+    hsl(350 80% 60% / 0.08) 25%,
+    hsl(263 70% 58% / 0.05) 50%,
+    hsl(350 80% 60% / 0.08) 75%,
+    hsl(263 70% 58% / 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer-bold 2s infinite;
+}
+
+.ui-bold .theme-light .persona-divider,
+.ui-bold.theme-light .persona-divider {
+  background: linear-gradient(90deg, transparent, hsl(263 70% 58% / 0.15), hsl(350 80% 60% / 0.1), transparent);
+}
+
+.ui-bold .theme-light .persona-empty-state-icon,
+.ui-bold.theme-light .persona-empty-state-icon {
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.06), hsl(350 80% 60% / 0.04));
+  color: hsl(263 70% 58%);
+  box-shadow: 0 8px 24px hsl(263 70% 58% / 0.06);
+}
+
+.ui-bold .theme-light .persona-search,
+.ui-bold.theme-light .persona-search {
+  background: hsl(263 70% 58% / 0.03);
+  border-color: hsl(263 70% 58% / 0.08);
+  color: hsl(260 10% 50%);
+}
+
+.ui-bold .theme-light .persona-search:hover,
+.ui-bold.theme-light .persona-search:hover {
+  background: hsl(263 70% 58% / 0.08);
+  border-color: hsl(263 70% 58% / 0.2);
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .persona-user-panel,
+.ui-bold.theme-light .persona-user-panel {
+  background: linear-gradient(90deg, hsl(263 70% 58% / 0.04) 0%, hsl(350 80% 60% / 0.02) 100%);
+  border-top-color: hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-light .persona-badge-primary,
+.ui-bold.theme-light .persona-badge-primary {
+  background: hsl(263 70% 58% / 0.08);
+  color: hsl(263 70% 48%);
+  border-color: hsl(263 70% 58% / 0.15);
+}
+
+.ui-bold .theme-light .persona-badge-success,
+.ui-bold.theme-light .persona-badge-success {
+  background: hsl(170 70% 48% / 0.08);
+  color: hsl(170 70% 38%);
+  border-color: hsl(170 70% 48% / 0.15);
+}
+
+.ui-bold .theme-light .persona-badge-accent,
+.ui-bold.theme-light .persona-badge-accent {
+  background: hsl(350 80% 60% / 0.08);
+  color: hsl(350 80% 50%);
+  border-color: hsl(350 80% 60% / 0.15);
+}
+
+.ui-bold .theme-light .persona-section-header,
+.ui-bold.theme-light .persona-section-header {
+  color: hsl(260 10% 50%);
+}
+
+.ui-bold .theme-light .persona-tab,
+.ui-bold.theme-light .persona-tab {
+  color: hsl(260 10% 50%);
+}
+
+.ui-bold .theme-light .persona-tab:hover,
+.ui-bold.theme-light .persona-tab:hover {
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .persona-pill,
+.ui-bold.theme-light .persona-pill {
+  background: hsl(263 70% 58% / 0.05);
+  color: hsl(260 10% 55%);
+  border-color: hsl(263 70% 58% / 0.1);
+}
+
+.ui-bold .theme-light .persona-pill:hover,
+.ui-bold.theme-light .persona-pill:hover {
+  background: hsl(263 70% 58% / 0.1);
+  color: hsl(263 70% 58%);
+  border-color: hsl(263 70% 58% / 0.25);
+}
+
+.ui-bold .theme-light .btn-persona-secondary,
+.ui-bold.theme-light .btn-persona-secondary {
+  background: hsl(263 70% 58% / 0.06);
+  color: hsl(263 70% 48%);
+  border-color: hsl(263 70% 58% / 0.2);
+}
+
+.ui-bold .theme-light .btn-persona-secondary:hover,
+.ui-bold.theme-light .btn-persona-secondary:hover {
+  background: hsl(263 70% 58% / 0.12);
+  border-color: hsl(263 70% 58% / 0.35);
+}
+
+.ui-bold .theme-light .btn-persona-ghost,
+.ui-bold.theme-light .btn-persona-ghost {
+  color: hsl(260 10% 50%);
+}
+
+.ui-bold .theme-light .btn-persona-ghost:hover,
+.ui-bold.theme-light .btn-persona-ghost:hover {
+  background: hsl(263 70% 58% / 0.06);
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .persona-nav-item,
+.ui-bold.theme-light .persona-nav-item {
+  color: hsl(260 10% 50%);
+}
+
+.ui-bold .theme-light .persona-nav-item:hover,
+.ui-bold.theme-light .persona-nav-item:hover {
+  background: hsl(263 70% 58% / 0.06);
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .persona-nav-item-active,
+.ui-bold.theme-light .persona-nav-item-active {
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.1) 0%, hsl(350 80% 60% / 0.04) 100%);
+  color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .persona-dm-item:hover,
+.ui-bold.theme-light .persona-dm-item:hover {
+  background: hsl(263 70% 58% / 0.06);
+}
+
+.ui-bold .theme-light .persona-dm-item-active,
+.ui-bold.theme-light .persona-dm-item-active {
+  background: linear-gradient(135deg, hsl(263 70% 58% / 0.1) 0%, hsl(350 80% 60% / 0.04) 100%);
+  border-left-color: hsl(263 70% 58%);
+}
+
+.ui-bold .theme-light .glassmorphism-topbar,
+.ui-bold.theme-light .glassmorphism-topbar {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom-color: hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-light .window-btn,
+.ui-bold .theme-light .window-btn-red,
+.ui-bold.theme-light .window-btn,
+.ui-bold.theme-light .window-btn-red {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: hsl(263 70% 58% / 0.1);
+  color: hsl(260 20% 30%);
+}
+
+.ui-bold .theme-light .window-btn:hover,
+.ui-bold .theme-light .window-btn-red:hover,
+.ui-bold.theme-light .window-btn:hover,
+.ui-bold.theme-light .window-btn-red:hover {
+  background: hsl(263 70% 58% / 0.08);
+  border-color: hsl(263 70% 58% / 0.2);
+  box-shadow: 0 4px 12px hsl(263 70% 58% / 0.08);
+}
+
+.ui-bold .theme-light .window-btn-red,
+.ui-bold.theme-light .window-btn-red {
+  color: hsl(350 80% 50%);
+}
+
+.ui-bold .theme-light .window-btn-red:hover,
+.ui-bold.theme-light .window-btn-red:hover {
+  background: hsl(350 80% 60% / 0.12);
+  color: hsl(350 80% 45%);
+}

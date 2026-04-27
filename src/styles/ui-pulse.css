@@ -1,0 +1,171 @@
+/* ========================================
+   Pulse Layout — Social Feed Style
+   Orange/Coral accent, social media feel
+   ======================================== */
+
+.ui-pulse {
+  --pulse-primary: 25 95% 53%;
+  --pulse-primary-dim: 25 80% 40%;
+  --pulse-surface: 15 20% 6%;
+  --pulse-surface-elevated: 15 18% 9%;
+  --pulse-border: 15 15% 16%;
+}
+
+/* Pulse overrides for persona components */
+.ui-pulse .persona-card {
+  background: linear-gradient(135deg, hsl(15 18% 9% / 0.95) 0%, hsl(20 16% 12% / 0.95) 100%);
+  border-radius: 1.25rem;
+}
+
+.ui-pulse .persona-card::before {
+  background: linear-gradient(90deg, transparent, hsl(25 95% 53% / 0.35), transparent);
+}
+
+.ui-pulse .persona-card-hover:hover {
+  border-color: hsl(25 95% 53% / 0.25);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px hsl(25 95% 53% / 0.08);
+}
+
+.ui-pulse .persona-glass {
+  background: hsl(15 18% 9% / 0.8);
+  backdrop-filter: blur(16px);
+}
+
+.ui-pulse .btn-persona {
+  background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(20 85% 48%) 100%);
+  border-radius: 9999px;
+}
+
+.ui-pulse .btn-persona:hover {
+  box-shadow: 0 8px 24px hsl(25 95% 53% / 0.25);
+}
+
+.ui-pulse .btn-persona-secondary {
+  border-radius: 9999px;
+}
+
+.ui-pulse .btn-persona-ghost {
+  border-radius: 9999px;
+}
+
+.ui-pulse .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(25 95% 53%), hsl(20 85% 48%), hsl(350 80% 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ui-pulse .persona-nav-item::before {
+  background: linear-gradient(180deg, hsl(25 95% 53%), hsl(20 85% 48%));
+}
+
+.ui-pulse .persona-modal {
+  background: rgba(18, 14, 12, 0.9);
+  border-radius: 1.5rem;
+}
+
+.ui-pulse .persona-input {
+  border-radius: 9999px;
+  padding-left: 1.25rem;
+}
+
+.ui-pulse .persona-pill {
+  border-radius: 9999px;
+}
+
+.ui-pulse .persona-pill-active {
+  background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(20 85% 48%) 100%);
+}
+
+.ui-pulse .persona-tabs {
+  border-radius: 9999px;
+}
+
+.ui-pulse .persona-tab-active {
+  background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(20 85% 48%) 100%);
+  transition: all 0.2s ease;
+}
+
+.ui-pulse .persona-tab-active:hover {
+  background: linear-gradient(135deg, hsl(25 95% 56%) 0%, hsl(20 85% 51%) 100%);
+  box-shadow: 0 4px 12px hsl(25 95% 53% / 0.25);
+}
+
+.ui-pulse .persona-tab-active:focus-visible {
+  outline: 2px solid hsl(25 95% 53%);
+  outline-offset: 2px;
+}
+
+/* Pulse-specific scrollbar */
+.ui-pulse ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(25 80% 50%), hsl(20 70% 42%));
+}
+
+.ui-pulse ::-webkit-scrollbar-track {
+  background: hsl(25 95% 53% / 0.05);
+}
+
+/* Pulse theme overrides */
+.ui-pulse.theme-midnight .persona-card {
+  background: linear-gradient(135deg, hsl(240 28% 9% / 0.95) 0%, hsl(245 22% 12% / 0.95) 100%);
+}
+
+.ui-pulse.theme-forest .persona-card {
+  background: linear-gradient(135deg, hsl(150 22% 9% / 0.95) 0%, hsl(155 18% 12% / 0.95) 100%);
+}
+
+.ui-pulse.theme-light .persona-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 243, 247, 0.92) 100%);
+}
+
+/* Pulse-specific: story circles / highlight bubbles */
+.ui-pulse .story-bubble {
+  border: 2px solid hsl(25 95% 53% / 0.5);
+  border-radius: 50%;
+  padding: 2px;
+  transition: all 0.2s ease;
+}
+
+.ui-pulse .story-bubble:hover {
+  border-color: hsl(25 95% 53% / 0.7);
+  box-shadow: 0 0 8px hsl(25 95% 53% / 0.15);
+}
+
+.ui-pulse .story-bubble-active {
+  border-color: hsl(25 95% 53%);
+  box-shadow: 0 0 12px hsl(25 95% 53% / 0.3);
+}
+
+.ui-pulse .story-bubble-active:hover {
+  box-shadow: 0 0 16px hsl(25 95% 53% / 0.4);
+}
+
+/* Focus-visible styles for accessibility */
+.ui-pulse button:focus-visible,
+.ui-pulse a:focus-visible,
+.ui-pulse [role="button"]:focus-visible {
+  outline: 2px solid hsl(25 95% 53% / 0.8);
+  outline-offset: 2px;
+}
+
+.ui-pulse input:focus-visible,
+.ui-pulse textarea:focus-visible {
+  outline: none;
+  border-color: hsl(25 95% 53% / 0.5);
+  box-shadow: 0 0 0 3px hsl(25 95% 53% / 0.15);
+}
+
+/* Interactive element transitions */
+.ui-pulse button,
+.ui-pulse a,
+.ui-pulse [role="button"] {
+  transition: all 0.2s ease;
+}
+
+/* Secondary text color for better contrast */
+.ui-pulse .text-secondary {
+  color: hsl(215 20% 65%);
+}
+
+.ui-pulse .text-primary {
+  color: hsl(215 5% 90%);
+}

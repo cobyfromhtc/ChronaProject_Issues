@@ -1,0 +1,1839 @@
+/* ========================================
+   Chrona — Minimal UI Variant
+   Linear/Notion-inspired: Ultra-clean, professional, understated
+   Selector: .ui-minimal (applied to <html>)
+   ======================================== */
+
+/* ========================================
+   CSS Custom Properties — Minimal
+   ======================================== */
+
+.ui-minimal {
+  --radius: 0.5rem;
+
+  /* Core Colors — Dark charcoal with cool slate undertones */
+  --background: 220 14% 6%;
+  --foreground: 220 14% 88%;
+
+  /* Card & Surface — Subtle elevation on charcoal */
+  --card: 220 14% 9%;
+  --card-foreground: 220 14% 88%;
+  --popover: 220 14% 9%;
+  --popover-foreground: 220 14% 88%;
+
+  /* Primary — Muted slate blue */
+  --primary: 215 20% 55%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary — Dark slate surface */
+  --secondary: 220 14% 14%;
+  --secondary-foreground: 220 14% 75%;
+
+  /* Muted — Quiet dark surface */
+  --muted: 220 14% 12%;
+  --muted-foreground: 220 12% 48%;
+
+  /* Accent — Slate blue indicator */
+  --accent: 215 20% 55%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive — Controlled red */
+  --destructive: 0 72% 51%;
+
+  /* Border & Input — Very thin, subtle */
+  --border: 220 14% 18%;
+  --input: 220 14% 16%;
+  --ring: 215 20% 55% / 0.3;
+
+  /* Chart Colors — Muted professional tones */
+  --chart-1: 215 20% 55%;
+  --chart-2: 200 15% 50%;
+  --chart-3: 35 15% 55%;
+  --chart-4: 340 15% 55%;
+  --chart-5: 170 12% 45%;
+
+  /* Sidebar */
+  --sidebar: 220 16% 5%;
+  --sidebar-foreground: 220 14% 88%;
+  --sidebar-primary: 215 20% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 215 20% 55% / 0.08;
+  --sidebar-accent-foreground: 220 14% 88%;
+  --sidebar-border: 220 14% 14%;
+  --sidebar-ring: 215 20% 55% / 0.3;
+}
+
+/* Dark mode — same base, Minimal is always dark-leaning */
+.ui-minimal.dark {
+  --radius: 0.5rem;
+  --background: 220 14% 6%;
+  --foreground: 220 14% 88%;
+  --card: 220 14% 9%;
+  --card-foreground: 220 14% 88%;
+  --popover: 220 14% 9%;
+  --popover-foreground: 220 14% 88%;
+  --primary: 215 20% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 14%;
+  --secondary-foreground: 220 14% 75%;
+  --muted: 220 14% 12%;
+  --muted-foreground: 220 12% 48%;
+  --accent: 215 20% 55%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --border: 220 14% 18%;
+  --input: 220 14% 16%;
+  --ring: 215 20% 55% / 0.3;
+  --sidebar: 220 16% 5%;
+  --sidebar-foreground: 220 14% 88%;
+  --sidebar-primary: 215 20% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 215 20% 55% / 0.08;
+  --sidebar-accent-foreground: 220 14% 88%;
+  --sidebar-border: 220 14% 14%;
+  --sidebar-ring: 215 20% 55% / 0.3;
+  --chart-1: 215 20% 55%;
+  --chart-2: 200 15% 50%;
+  --chart-3: 35 15% 55%;
+  --chart-4: 340 15% 55%;
+  --chart-5: 170 12% 45%;
+}
+
+/* ========================================
+   Minimal Keyframe Animations
+   ======================================== */
+
+@keyframes minimal-fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes minimal-slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes minimal-scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes minimal-messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes minimal-pulse-status {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(142 72% 45% / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 3px hsl(142 72% 45% / 0);
+  }
+}
+
+@keyframes minimal-progressBar {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes minimal-fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes minimal-gradient-shift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes minimal-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes minimal-sparkle-float {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes minimal-persona-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ========================================
+   Selection Colors
+   ======================================== */
+
+.ui-minimal ::selection {
+  background: hsl(215 20% 55% / 0.25);
+  color: hsl(220 14% 95%);
+}
+
+.ui-minimal ::-moz-selection {
+  background: hsl(215 20% 55% / 0.25);
+  color: hsl(220 14% 95%);
+}
+
+/* ========================================
+   Body Reset — Clean system font stack
+   ======================================== */
+
+.ui-minimal body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Oxygen, Ubuntu, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* No body overlays — clean, flat surface */
+
+/* ========================================
+   Heading Styles — Clean, professional
+   ======================================== */
+
+.ui-minimal h1,
+.ui-minimal h2,
+.ui-minimal h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* ========================================
+   Custom Scrollbar — Minimal Slate
+   ======================================== */
+
+.ui-minimal ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.ui-minimal ::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.ui-minimal ::-webkit-scrollbar-thumb {
+  background: hsl(220 14% 22%);
+  border-radius: 3px;
+}
+
+.ui-minimal ::-webkit-scrollbar-thumb:hover {
+  background: hsl(220 14% 30%);
+}
+
+.ui-minimal .custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(220 14% 22%) transparent;
+}
+
+.ui-minimal .custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ui-minimal .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.ui-minimal .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(220 14% 22%);
+  border-radius: 3px;
+  min-height: 40px;
+}
+
+.ui-minimal .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(220 14% 30%);
+}
+
+.ui-minimal .custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ========================================
+   Background Effects
+   ======================================== */
+
+/* Flat, solid background — no patterns, no gradients */
+.ui-minimal .persona-bg {
+  background: hsl(220 14% 6%);
+  background-attachment: fixed;
+}
+
+/* Subtle gradient animation — very restrained */
+.ui-minimal .persona-gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    hsl(220 14% 7%),
+    hsl(215 14% 8%),
+    hsl(220 14% 7%),
+    hsl(218 14% 8%)
+  );
+  background-size: 400% 400%;
+  animation: minimal-persona-gradient 25s ease infinite;
+}
+
+/* ========================================
+   Glass & Card Effects
+   ======================================== */
+
+/* Clean flat surface instead of glassmorphism */
+.ui-minimal .persona-glass {
+  background: hsl(220 14% 9%);
+  border: 1px solid hsl(220 14% 18%);
+  box-shadow: none;
+}
+
+.ui-minimal .persona-glass-light {
+  background: hsl(220 14% 10%);
+  border: 1px solid hsl(220 14% 16%);
+  box-shadow: none;
+}
+
+/* Flat card with thin border */
+.ui-minimal .persona-card {
+  background: hsl(220 14% 9%);
+  border: 1px solid hsl(220 14% 18%);
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+/* Subtle top highlight line */
+.ui-minimal .persona-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(220 14% 25%), transparent);
+  z-index: 1;
+}
+
+/* Remove any grid/pattern overlays */
+.ui-minimal .persona-card::after {
+  content: none;
+}
+
+/* Card hover — minimal lift with subtle shadow */
+.ui-minimal .persona-card-hover {
+  transition: all 0.15s ease;
+}
+
+.ui-minimal .persona-card-hover:hover {
+  transform: translateY(-1px);
+  border-color: hsl(220 14% 24%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   Button Styles
+   ======================================== */
+
+/* Primary button — clean, flat */
+.ui-minimal .btn-persona {
+  background: hsl(215 20% 55%);
+  color: hsl(0 0% 100%);
+  font-weight: 500;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  letter-spacing: 0;
+  box-shadow: none;
+}
+
+.ui-minimal .btn-persona::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: hsl(0 0% 100% / 0);
+  transition: background 0.15s ease;
+}
+
+.ui-minimal .btn-persona:hover {
+  background: hsl(215 20% 50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ui-minimal .btn-persona:hover::before {
+  background: hsl(0 0% 100% / 0.06);
+}
+
+.ui-minimal .btn-persona:active {
+  transform: translateY(0);
+  background: hsl(215 20% 45%);
+  box-shadow: none;
+}
+
+/* Secondary button */
+.ui-minimal .btn-persona-secondary {
+  background: hsl(220 14% 14%);
+  color: hsl(220 14% 75%);
+  font-weight: 500;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid hsl(220 14% 20%);
+  transition: all 0.15s ease;
+  font-size: 0.8125rem;
+  box-shadow: none;
+}
+
+.ui-minimal .btn-persona-secondary:hover {
+  background: hsl(220 14% 16%);
+  border-color: hsl(220 14% 26%);
+  color: hsl(220 14% 82%);
+}
+
+/* Ghost button */
+.ui-minimal .btn-persona-ghost {
+  background: transparent;
+  color: hsl(220 12% 55%);
+  font-weight: 500;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s ease;
+  font-size: 0.8125rem;
+}
+
+.ui-minimal .btn-persona-ghost:hover {
+  background: hsl(220 14% 12%);
+  color: hsl(220 14% 75%);
+}
+
+/* ========================================
+   Custom Electron Top Bar
+   ======================================== */
+
+.ui-minimal .topbar {
+  border-bottom: 1px solid hsl(220 14% 14%);
+  box-shadow: none;
+}
+
+.ui-minimal .window-btn,
+.ui-minimal .window-btn-red {
+  width: 28px;
+  height: 28px;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  color: hsl(220 14% 55%);
+  background: transparent;
+  box-shadow: none;
+}
+
+.ui-minimal .window-btn:hover,
+.ui-minimal .window-btn-red:hover {
+  background: hsl(220 14% 14%);
+  border-color: hsl(220 14% 18%);
+  color: hsl(220 14% 75%);
+  box-shadow: none;
+  transform: none;
+}
+
+.ui-minimal .window-btn-red {
+  color: hsl(0 72% 55%);
+}
+
+.ui-minimal .window-btn-red:hover {
+  background: hsl(0 72% 51% / 0.12);
+  border-color: hsl(0 72% 51% / 0.2);
+  color: hsl(0 72% 60%);
+  box-shadow: none;
+}
+
+.ui-minimal .window-btn,
+.ui-minimal .window-btn-red {
+  -webkit-app-region: no-drag;
+}
+
+/* ========================================
+   Tab Styles
+   ======================================== */
+
+.ui-minimal .persona-tabs {
+  display: flex;
+  gap: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid hsl(220 14% 16%);
+}
+
+.ui-minimal .persona-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: hsl(220 12% 48%);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.ui-minimal .persona-tab:hover {
+  color: hsl(220 14% 75%);
+  background: transparent;
+  border-bottom-color: hsl(220 14% 24%);
+}
+
+.ui-minimal .persona-tab-active {
+  color: hsl(220 14% 88%);
+  background: transparent;
+  border-bottom-color: hsl(215 20% 55%);
+  box-shadow: none;
+  font-weight: 500;
+}
+
+/* ========================================
+   Category Pills
+   ======================================== */
+
+.ui-minimal .persona-pill {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: transparent;
+  color: hsl(220 12% 55%);
+  border: 1px solid hsl(220 14% 18%);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ui-minimal .persona-pill:hover {
+  background: hsl(220 14% 12%);
+  border-color: hsl(220 14% 24%);
+  color: hsl(220 14% 75%);
+}
+
+.ui-minimal .persona-pill-active {
+  background: hsl(215 20% 55% / 0.12);
+  color: hsl(215 20% 65%);
+  border-color: hsl(215 20% 55% / 0.25);
+  box-shadow: none;
+  font-weight: 500;
+}
+
+/* ========================================
+   Input Styles
+   ======================================== */
+
+.ui-minimal .persona-input {
+  background: hsl(220 14% 8%);
+  border: 1px solid hsl(220 14% 18%);
+  border-radius: 0.375rem;
+  color: hsl(220 14% 88%);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.15s ease;
+  font-size: 0.8125rem;
+}
+
+.ui-minimal .persona-input::placeholder {
+  color: hsl(220 12% 38%);
+  opacity: 1;
+}
+
+.ui-minimal .persona-input:focus {
+  outline: none;
+  border-color: hsl(215 20% 55%);
+  box-shadow: 0 0 0 2px hsl(215 20% 55% / 0.12);
+  background: hsl(220 14% 8%);
+}
+
+/* Select dropdown styling */
+.ui-minimal .persona-input option,
+.ui-minimal select option {
+  background: hsl(220 14% 9%);
+  color: hsl(220 14% 88%);
+  padding: 0.5rem;
+}
+
+.ui-minimal .persona-input option:hover,
+.ui-minimal .persona-input option:checked,
+.ui-minimal select option:hover,
+.ui-minimal select option:checked {
+  background: hsl(215 20% 55% / 0.15);
+  color: hsl(220 14% 95%);
+}
+
+/* Select dropdown arrow styling */
+.ui-minimal select.persona-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* Generic select in persona components */
+.ui-minimal select[class*="purple"],
+.ui-minimal select[class*="bg-purple"] {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+/* ========================================
+   Sidebar Styles
+   ======================================== */
+
+.ui-minimal .persona-sidebar {
+  background: hsl(220 16% 5%);
+  border-right: 1px solid hsl(220 14% 14%);
+  position: relative;
+}
+
+/* Subtle top fade instead of gradient glow */
+.ui-minimal .persona-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, hsl(220 16% 5%) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sidebar navigation item */
+.ui-minimal .persona-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  color: hsl(220 12% 50%);
+  font-weight: 450;
+  font-size: 0.8125rem;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left indicator bar — subtle slate blue */
+.ui-minimal .persona-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: hsl(215 20% 55%);
+  transform: scaleY(0);
+  transition: transform 0.15s ease;
+  border-radius: 0 1px 1px 0;
+}
+
+.ui-minimal .persona-nav-item:hover {
+  background: hsl(220 14% 10%);
+  color: hsl(220 14% 75%);
+}
+
+.ui-minimal .persona-nav-item-active {
+  background: hsl(215 20% 55% / 0.08);
+  color: hsl(220 14% 88%);
+  box-shadow: none;
+}
+
+.ui-minimal .persona-nav-item-active::before {
+  transform: scaleY(1);
+}
+
+/* DM item in sidebar */
+.ui-minimal .persona-dm-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.375rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.ui-minimal .persona-dm-item:hover {
+  background: hsl(220 14% 10%);
+}
+
+.ui-minimal .persona-dm-item-active {
+  background: hsl(215 20% 55% / 0.08);
+  border-left: 2px solid hsl(215 20% 55%);
+  box-shadow: none;
+}
+
+/* ========================================
+   Online Status Indicator
+   ======================================== */
+
+.ui-minimal .persona-status-online::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background: hsl(142 72% 45%);
+  border: 2px solid hsl(220 14% 9%);
+  border-radius: 50%;
+  animation: minimal-pulse-status 2s infinite;
+  z-index: 10;
+  box-shadow: none;
+}
+
+.ui-minimal .persona-status-offline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background: hsl(220 12% 30%);
+  border: 2px solid hsl(220 14% 9%);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+/* ========================================
+   Avatar Styles
+   ======================================== */
+
+.ui-minimal .persona-avatar {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Subtle hover ring instead of gradient glow */
+.ui-minimal .persona-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid hsl(215 20% 55%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ui-minimal .persona-avatar:hover::after {
+  opacity: 1;
+  box-shadow: none;
+}
+
+.ui-minimal .persona-avatar-glow {
+  box-shadow: 0 0 0 2px hsl(215 20% 55% / 0.2);
+}
+
+/* ========================================
+   Section Headers
+   ======================================== */
+
+.ui-minimal .persona-section-header {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(220 12% 42%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+}
+
+/* ========================================
+   Search Bar
+   ======================================== */
+
+.ui-minimal .persona-search {
+  background: hsl(220 14% 8%);
+  border: 1px solid hsl(220 14% 16%);
+  border-radius: 0.375rem;
+  padding: 0.4375rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(220 12% 40%);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 0.8125rem;
+}
+
+.ui-minimal .persona-search:hover {
+  background: hsl(220 14% 10%);
+  border-color: hsl(220 14% 22%);
+  color: hsl(220 12% 55%);
+}
+
+/* ========================================
+   User Panel (bottom of sidebar)
+   ======================================== */
+
+.ui-minimal .persona-user-panel {
+  background: hsl(220 14% 5%);
+  border-top: 1px solid hsl(220 14% 14%);
+  padding: 0.625rem 0.75rem;
+}
+
+/* ========================================
+   Badge
+   ======================================== */
+
+.ui-minimal .persona-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.ui-minimal .persona-badge-primary {
+  background: hsl(215 20% 55% / 0.12);
+  color: hsl(215 20% 65%);
+  border: 1px solid hsl(215 20% 55% / 0.2);
+  box-shadow: none;
+}
+
+.ui-minimal .persona-badge-success {
+  background: hsl(142 72% 45% / 0.12);
+  color: hsl(142 60% 55%);
+  border: 1px solid hsl(142 72% 45% / 0.2);
+  box-shadow: none;
+}
+
+.ui-minimal .persona-badge-accent {
+  background: hsl(35 15% 55% / 0.12);
+  color: hsl(35 15% 62%);
+  border: 1px solid hsl(35 15% 55% / 0.2);
+  box-shadow: none;
+}
+
+/* ========================================
+   Gradient Text
+   ======================================== */
+
+/* Subtle two-tone instead of vivid gradient */
+.ui-minimal .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(220 14% 75%), hsl(215 20% 65%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: minimal-gradient-shift 4s ease infinite;
+}
+
+/* ========================================
+   Loading States
+   ======================================== */
+
+.ui-minimal .persona-skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(220 14% 12%) 0%,
+    hsl(220 14% 16%) 50%,
+    hsl(220 14% 12%) 100%
+  );
+  background-size: 200% 100%;
+  animation: minimal-skeleton-shimmer 2s infinite;
+  border-radius: 0.25rem;
+}
+
+/* ========================================
+   Decorative Elements
+   ======================================== */
+
+/* Minimal sparkle — small, understated */
+.ui-minimal .persona-sparkle {
+  position: relative;
+}
+
+.ui-minimal .persona-sparkle::before,
+.ui-minimal .persona-sparkle::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: hsl(215 20% 55%);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: minimal-sparkle-float 4s ease-in-out infinite;
+}
+
+.ui-minimal .persona-sparkle::before {
+  top: -0.125rem;
+  right: -0.125rem;
+  animation-delay: 0s;
+}
+
+.ui-minimal .persona-sparkle::after {
+  bottom: -0.125rem;
+  left: -0.125rem;
+  animation-delay: 2s;
+}
+
+/* Simple divider — no glow */
+.ui-minimal .persona-divider {
+  height: 1px;
+  background: hsl(220 14% 16%);
+  margin: 0.75rem 0;
+  box-shadow: none;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+.ui-minimal .persona-animate-in {
+  animation: minimal-fadeSlideIn 0.2s ease-out;
+}
+
+.ui-minimal .persona-animate-slide {
+  animation: minimal-slideInLeft 0.2s ease-out;
+}
+
+.ui-minimal .persona-animate-scale {
+  animation: minimal-scaleIn 0.15s ease-out;
+}
+
+/* Message bubble */
+.ui-minimal .persona-message {
+  animation: minimal-messageIn 0.15s ease-out;
+}
+
+/* ========================================
+   Empty States
+   ======================================== */
+
+.ui-minimal .persona-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.ui-minimal .persona-empty-state-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background: hsl(220 14% 10%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: hsl(220 12% 42%);
+  border: 1px solid hsl(220 14% 16%);
+  box-shadow: none;
+}
+
+/* ========================================
+   Modal Styles — Clean Flat Surfaces
+   ======================================== */
+
+.ui-minimal .persona-modal {
+  background: hsl(220 14% 8%);
+  border: 1px solid hsl(220 14% 18%);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px hsl(220 14% 12%);
+}
+
+/* Remove inner glow overlay */
+.ui-minimal .persona-modal::after {
+  content: none;
+}
+
+/* Dedicated Glassmorphism Modal class — flat override */
+.ui-minimal .glassmorphism-modal {
+  background: hsl(220 14% 8%);
+  border: 1px solid hsl(220 14% 18%);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px hsl(220 14% 12%);
+}
+
+.ui-minimal .glassmorphism-modal::after {
+  content: none;
+}
+
+.ui-minimal .persona-modal-header {
+  border-bottom: 1px solid hsl(220 14% 16%);
+  padding: 1.25rem 1.5rem;
+}
+
+.ui-minimal .persona-modal-content {
+  padding: 1.25rem 1.5rem;
+}
+
+/* ========================================
+   Glassmorphism Top Bar — Flat Override
+   ======================================== */
+
+.ui-minimal .glassmorphism-topbar {
+  background: hsl(220 14% 6% / 0.95);
+  border-bottom: 1px solid hsl(220 14% 14%);
+  box-shadow: none;
+}
+
+/* ========================================
+   Featured Banner Progress Bar
+   ======================================== */
+
+/* (inherits minimal-progressBar keyframe, no class override needed) */
+
+/* ========================================
+   Tooltip
+   ======================================== */
+
+.ui-minimal .persona-tooltip {
+  background: hsl(220 14% 12%);
+  border: 1px solid hsl(220 14% 20%);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+  color: hsl(220 14% 82%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+}
+
+/* ========================================
+   Favourite Star
+   ======================================== */
+
+.ui-minimal .persona-favourite {
+  color: hsl(40 30% 58%);
+  filter: none;
+}
+
+/* ========================================
+   Responsive Utilities
+   ======================================== */
+
+@media (max-width: 768px) {
+  .ui-minimal .persona-sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ========================================
+   Minimal — Midnight Theme Overrides
+   (When .ui-minimal and .theme-midnight coexist)
+   ======================================== */
+
+.ui-minimal.theme-midnight .persona-bg {
+  background: hsl(250 20% 6%);
+  background-attachment: fixed;
+}
+
+.ui-minimal.theme-midnight .persona-card {
+  background: hsl(250 18% 9%);
+  border-color: hsl(250 16% 18%);
+}
+
+.ui-minimal.theme-midnight .persona-card::before {
+  background: linear-gradient(90deg, transparent, hsl(250 18% 25%), transparent);
+}
+
+.ui-minimal.theme-midnight .persona-card-hover:hover {
+  border-color: hsl(250 18% 26%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.ui-minimal.theme-midnight .persona-glass {
+  background: hsl(250 18% 9%);
+  border-color: hsl(250 16% 18%);
+}
+
+.ui-minimal.theme-midnight .btn-persona {
+  background: hsl(250 20% 55%);
+}
+
+.ui-minimal.theme-midnight .btn-persona:hover {
+  background: hsl(250 20% 50%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ui-minimal.theme-midnight .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(250 18% 72%), hsl(250 20% 62%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ui-minimal.theme-midnight .persona-nav-item::before {
+  background: hsl(250 20% 55%);
+}
+
+/* ========================================
+   Minimal — Forest Theme Overrides
+   ======================================== */
+
+.ui-minimal.theme-forest .persona-bg {
+  background: hsl(150 14% 6%);
+  background-attachment: fixed;
+}
+
+.ui-minimal.theme-forest .persona-card {
+  background: hsl(150 12% 9%);
+  border-color: hsl(150 10% 18%);
+}
+
+.ui-minimal.theme-forest .persona-card::before {
+  background: linear-gradient(90deg, transparent, hsl(150 12% 25%), transparent);
+}
+
+.ui-minimal.theme-forest .persona-card-hover:hover {
+  border-color: hsl(150 12% 26%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.ui-minimal.theme-forest .persona-glass {
+  background: hsl(150 12% 9%);
+  border-color: hsl(150 10% 18%);
+}
+
+.ui-minimal.theme-forest .btn-persona {
+  background: hsl(155 15% 42%);
+}
+
+.ui-minimal.theme-forest .btn-persona:hover {
+  background: hsl(155 15% 38%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ui-minimal.theme-forest .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(150 12% 68%), hsl(155 15% 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ui-minimal.theme-forest .persona-nav-item::before {
+  background: hsl(155 15% 42%);
+}
+
+/* ========================================
+   Minimal — Light Theme Overrides
+   (Clean, Notion-like light surface)
+   ======================================== */
+
+.ui-minimal.theme-light .persona-bg {
+  background: hsl(220 14% 97%);
+  background-attachment: fixed;
+}
+
+.ui-minimal.theme-light .persona-card {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-card::before {
+  background: linear-gradient(90deg, transparent, hsl(220 14% 90%), transparent);
+}
+
+.ui-minimal.theme-light .persona-card-hover:hover {
+  border-color: hsl(220 14% 78%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.ui-minimal.theme-light .persona-glass {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .btn-persona {
+  background: hsl(215 20% 42%);
+}
+
+.ui-minimal.theme-light .btn-persona:hover {
+  background: hsl(215 20% 38%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ui-minimal.theme-light .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(220 14% 30%), hsl(215 20% 42%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ui-minimal.theme-light .persona-nav-item::before {
+  background: hsl(215 20% 42%);
+}
+
+/* ========================================
+   Minimal Light — Additional Component Overrides
+   ======================================== */
+
+.ui-minimal.theme-light .persona-glass-light {
+  background: hsl(220 14% 96%);
+  border-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-sidebar {
+  background: hsl(220 14% 96%);
+  border-right-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-sidebar::before {
+  background: linear-gradient(180deg, hsl(220 14% 96%) 0%, transparent 100%);
+}
+
+.ui-minimal.theme-light .persona-nav-item {
+  color: hsl(220 10% 45%);
+}
+
+.ui-minimal.theme-light .persona-nav-item:hover {
+  background: hsl(220 14% 92%);
+  color: hsl(220 14% 25%);
+}
+
+.ui-minimal.theme-light .persona-nav-item-active {
+  background: hsl(215 20% 42% / 0.08);
+  color: hsl(220 14% 15%);
+}
+
+.ui-minimal.theme-light .persona-dm-item:hover {
+  background: hsl(220 14% 92%);
+}
+
+.ui-minimal.theme-light .persona-dm-item-active {
+  background: hsl(215 20% 42% / 0.08);
+  border-left-color: hsl(215 20% 42%);
+}
+
+.ui-minimal.theme-light .persona-input {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 85%);
+  color: hsl(220 14% 15%);
+}
+
+.ui-minimal.theme-light .persona-input::placeholder {
+  color: hsl(220 10% 60%);
+}
+
+.ui-minimal.theme-light .persona-input:focus {
+  border-color: hsl(215 20% 42%);
+  box-shadow: 0 0 0 2px hsl(215 20% 42% / 0.1);
+}
+
+.ui-minimal.theme-light .persona-search {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 85%);
+  color: hsl(220 10% 55%);
+}
+
+.ui-minimal.theme-light .persona-search:hover {
+  background: hsl(220 14% 96%);
+  border-color: hsl(220 14% 78%);
+  color: hsl(220 10% 40%);
+}
+
+.ui-minimal.theme-light .persona-user-panel {
+  background: hsl(220 14% 96%);
+  border-top-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-section-header {
+  color: hsl(220 10% 45%);
+}
+
+.ui-minimal.theme-light .persona-pill {
+  background: transparent;
+  border-color: hsl(220 14% 85%);
+  color: hsl(220 10% 45%);
+}
+
+.ui-minimal.theme-light .persona-pill:hover {
+  background: hsl(220 14% 92%);
+  border-color: hsl(220 14% 78%);
+  color: hsl(220 14% 25%);
+}
+
+.ui-minimal.theme-light .persona-pill-active {
+  background: hsl(215 20% 42% / 0.08);
+  border-color: hsl(215 20% 42% / 0.2);
+  color: hsl(215 20% 42%);
+}
+
+.ui-minimal.theme-light .persona-modal {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 88%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .glassmorphism-modal {
+  background: hsl(0 0% 100%);
+  border-color: hsl(220 14% 88%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-modal-header {
+  border-bottom-color: hsl(220 14% 90%);
+}
+
+.ui-minimal.theme-light .glassmorphism-topbar {
+  background: hsl(220 14% 97% / 0.95);
+  border-bottom-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .topbar {
+  border-bottom-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .window-btn,
+.ui-minimal.theme-light .window-btn-red {
+  color: hsl(220 10% 45%);
+  background: transparent;
+  border-color: transparent;
+}
+
+.ui-minimal.theme-light .window-btn:hover,
+.ui-minimal.theme-light .window-btn-red:hover {
+  background: hsl(220 14% 92%);
+  border-color: hsl(220 14% 85%);
+  color: hsl(220 14% 25%);
+}
+
+.ui-minimal.theme-light .window-btn-red {
+  color: hsl(0 72% 50%);
+}
+
+.ui-minimal.theme-light .window-btn-red:hover {
+  background: hsl(0 72% 50% / 0.08);
+  border-color: hsl(0 72% 50% / 0.15);
+  color: hsl(0 72% 50%);
+}
+
+.ui-minimal.theme-light .persona-tab {
+  color: hsl(220 10% 45%);
+}
+
+.ui-minimal.theme-light .persona-tab:hover {
+  color: hsl(220 14% 25%);
+  border-bottom-color: hsl(220 14% 78%);
+}
+
+.ui-minimal.theme-light .persona-tab-active {
+  color: hsl(220 14% 15%);
+  border-bottom-color: hsl(215 20% 42%);
+}
+
+.ui-minimal.theme-light .persona-tabs {
+  border-bottom-color: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-tooltip {
+  background: hsl(220 14% 18%);
+  border-color: hsl(220 14% 25%);
+  color: hsl(220 14% 92%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ui-minimal.theme-light .persona-badge-primary {
+  background: hsl(215 20% 42% / 0.08);
+  color: hsl(215 20% 42%);
+  border-color: hsl(215 20% 42% / 0.15);
+}
+
+.ui-minimal.theme-light .persona-badge-success {
+  background: hsl(142 72% 35% / 0.08);
+  color: hsl(142 60% 38%);
+  border-color: hsl(142 72% 35% / 0.15);
+}
+
+.ui-minimal.theme-light .persona-badge-accent {
+  background: hsl(35 15% 45% / 0.08);
+  color: hsl(35 15% 42%);
+  border-color: hsl(35 15% 45% / 0.15);
+}
+
+.ui-minimal.theme-light .persona-status-online::after {
+  border-color: hsl(0 0% 100%);
+}
+
+.ui-minimal.theme-light .persona-status-offline::after {
+  background: hsl(220 10% 75%);
+  border-color: hsl(0 0% 100%);
+}
+
+.ui-minimal.theme-light .persona-avatar::after {
+  border-color: hsl(215 20% 42%);
+}
+
+.ui-minimal.theme-light .persona-skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(220 14% 92%) 0%,
+    hsl(220 14% 96%) 50%,
+    hsl(220 14% 92%) 100%
+  );
+  background-size: 200% 100%;
+}
+
+.ui-minimal.theme-light .persona-divider {
+  background: hsl(220 14% 88%);
+}
+
+.ui-minimal.theme-light .persona-empty-state-icon {
+  background: hsl(220 14% 94%);
+  border-color: hsl(220 14% 88%);
+  color: hsl(220 10% 55%);
+}
+
+.ui-minimal.theme-light .persona-favourite {
+  color: hsl(40 25% 45%);
+}
+
+.ui-minimal.theme-light .btn-persona-secondary {
+  background: hsl(220 14% 94%);
+  color: hsl(220 10% 35%);
+  border-color: hsl(220 14% 85%);
+}
+
+.ui-minimal.theme-light .btn-persona-secondary:hover {
+  background: hsl(220 14% 90%);
+  border-color: hsl(220 14% 78%);
+  color: hsl(220 14% 20%);
+}
+
+.ui-minimal.theme-light .btn-persona-ghost {
+  color: hsl(220 10% 45%);
+}
+
+.ui-minimal.theme-light .btn-persona-ghost:hover {
+  background: hsl(220 14% 92%);
+  color: hsl(220 14% 20%);
+}
+
+/* ========================================
+   Minimal Midnight — Additional Component Overrides
+   ======================================== */
+
+.ui-minimal.theme-midnight .persona-glass-light {
+  background: hsl(250 18% 10%);
+  border-color: hsl(250 16% 16%);
+}
+
+.ui-minimal.theme-midnight .persona-sidebar {
+  background: hsl(250 20% 4%);
+  border-right-color: hsl(250 16% 14%);
+}
+
+.ui-minimal.theme-midnight .persona-sidebar::before {
+  background: linear-gradient(180deg, hsl(250 20% 4%) 0%, transparent 100%);
+}
+
+.ui-minimal.theme-midnight .persona-nav-item {
+  color: hsl(250 12% 48%);
+}
+
+.ui-minimal.theme-midnight .persona-nav-item:hover {
+  background: hsl(250 16% 10%);
+  color: hsl(250 14% 72%);
+}
+
+.ui-minimal.theme-midnight .persona-nav-item-active {
+  background: hsl(250 20% 55% / 0.08);
+  color: hsl(250 14% 88%);
+}
+
+.ui-minimal.theme-midnight .persona-dm-item:hover {
+  background: hsl(250 16% 10%);
+}
+
+.ui-minimal.theme-midnight .persona-dm-item-active {
+  background: hsl(250 20% 55% / 0.08);
+  border-left-color: hsl(250 20% 55%);
+}
+
+.ui-minimal.theme-midnight .persona-input {
+  background: hsl(250 18% 7%);
+  border-color: hsl(250 16% 16%);
+  color: hsl(250 14% 88%);
+}
+
+.ui-minimal.theme-midnight .persona-input:focus {
+  border-color: hsl(250 20% 55%);
+  box-shadow: 0 0 0 2px hsl(250 20% 55% / 0.12);
+}
+
+.ui-minimal.theme-midnight .persona-search {
+  background: hsl(250 18% 7%);
+  border-color: hsl(250 16% 14%);
+  color: hsl(250 12% 38%);
+}
+
+.ui-minimal.theme-midnight .persona-search:hover {
+  background: hsl(250 16% 9%);
+  border-color: hsl(250 16% 20%);
+  color: hsl(250 12% 55%);
+}
+
+.ui-minimal.theme-midnight .persona-user-panel {
+  background: hsl(250 18% 4%);
+  border-top-color: hsl(250 16% 14%);
+}
+
+.ui-minimal.theme-midnight .persona-section-header {
+  color: hsl(250 12% 42%);
+}
+
+.ui-minimal.theme-midnight .persona-pill {
+  background: transparent;
+  border-color: hsl(250 16% 18%);
+  color: hsl(250 12% 48%);
+}
+
+.ui-minimal.theme-midnight .persona-pill:hover {
+  background: hsl(250 16% 10%);
+  border-color: hsl(250 16% 24%);
+  color: hsl(250 14% 72%);
+}
+
+.ui-minimal.theme-midnight .persona-pill-active {
+  background: hsl(250 20% 55% / 0.12);
+  border-color: hsl(250 20% 55% / 0.25);
+  color: hsl(250 20% 65%);
+}
+
+.ui-minimal.theme-midnight .persona-modal {
+  background: hsl(250 18% 7%);
+  border-color: hsl(250 16% 18%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px hsl(250 16% 12%);
+}
+
+.ui-minimal.theme-midnight .glassmorphism-modal {
+  background: hsl(250 18% 7%);
+  border-color: hsl(250 16% 18%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px hsl(250 16% 12%);
+}
+
+.ui-minimal.theme-midnight .persona-modal-header {
+  border-bottom-color: hsl(250 16% 16%);
+}
+
+.ui-minimal.theme-midnight .glassmorphism-topbar {
+  background: hsl(250 18% 5% / 0.95);
+  border-bottom-color: hsl(250 16% 14%);
+}
+
+.ui-minimal.theme-midnight .topbar {
+  border-bottom-color: hsl(250 16% 14%);
+}
+
+.ui-minimal.theme-midnight .persona-tab {
+  color: hsl(250 12% 48%);
+}
+
+.ui-minimal.theme-midnight .persona-tab:hover {
+  color: hsl(250 14% 72%);
+  border-bottom-color: hsl(250 16% 24%);
+}
+
+.ui-minimal.theme-midnight .persona-tab-active {
+  color: hsl(250 14% 88%);
+  border-bottom-color: hsl(250 20% 55%);
+}
+
+.ui-minimal.theme-midnight .persona-tabs {
+  border-bottom-color: hsl(250 16% 16%);
+}
+
+.ui-minimal.theme-midnight .persona-tooltip {
+  background: hsl(250 16% 12%);
+  border-color: hsl(250 16% 20%);
+  color: hsl(250 14% 82%);
+}
+
+.ui-minimal.theme-midnight .persona-badge-primary {
+  background: hsl(250 20% 55% / 0.12);
+  color: hsl(250 20% 65%);
+  border-color: hsl(250 20% 55% / 0.2);
+}
+
+.ui-minimal.theme-midnight .persona-badge-success {
+  background: hsl(142 72% 45% / 0.12);
+  color: hsl(142 60% 55%);
+  border-color: hsl(142 72% 45% / 0.2);
+}
+
+.ui-minimal.theme-midnight .persona-badge-accent {
+  background: hsl(280 15% 55% / 0.12);
+  color: hsl(280 15% 65%);
+  border-color: hsl(280 15% 55% / 0.2);
+}
+
+.ui-minimal.theme-midnight .persona-status-online::after {
+  background: hsl(142 72% 45%);
+  border-color: hsl(250 18% 9%);
+}
+
+.ui-minimal.theme-midnight .persona-status-offline::after {
+  background: hsl(250 12% 28%);
+  border-color: hsl(250 18% 9%);
+}
+
+.ui-minimal.theme-midnight .persona-avatar::after {
+  border-color: hsl(250 20% 55%);
+}
+
+.ui-minimal.theme-midnight .persona-favourite {
+  color: hsl(40 25% 55%);
+}
+
+/* ========================================
+   Minimal Forest — Additional Component Overrides
+   ======================================== */
+
+.ui-minimal.theme-forest .persona-glass-light {
+  background: hsl(150 10% 10%);
+  border-color: hsl(150 8% 16%);
+}
+
+.ui-minimal.theme-forest .persona-sidebar {
+  background: hsl(150 14% 4%);
+  border-right-color: hsl(150 10% 14%);
+}
+
+.ui-minimal.theme-forest .persona-sidebar::before {
+  background: linear-gradient(180deg, hsl(150 14% 4%) 0%, transparent 100%);
+}
+
+.ui-minimal.theme-forest .persona-nav-item {
+  color: hsl(150 8% 48%);
+}
+
+.ui-minimal.theme-forest .persona-nav-item:hover {
+  background: hsl(150 10% 9%);
+  color: hsl(150 12% 68%);
+}
+
+.ui-minimal.theme-forest .persona-nav-item-active {
+  background: hsl(155 15% 42% / 0.08);
+  color: hsl(150 12% 85%);
+}
+
+.ui-minimal.theme-forest .persona-dm-item:hover {
+  background: hsl(150 10% 9%);
+}
+
+.ui-minimal.theme-forest .persona-dm-item-active {
+  background: hsl(155 15% 42% / 0.08);
+  border-left-color: hsl(155 15% 42%);
+}
+
+.ui-minimal.theme-forest .persona-input {
+  background: hsl(150 10% 7%);
+  border-color: hsl(150 8% 16%);
+  color: hsl(150 12% 85%);
+}
+
+.ui-minimal.theme-forest .persona-input:focus {
+  border-color: hsl(155 15% 42%);
+  box-shadow: 0 0 0 2px hsl(155 15% 42% / 0.12);
+}
+
+.ui-minimal.theme-forest .persona-search {
+  background: hsl(150 10% 7%);
+  border-color: hsl(150 8% 14%);
+  color: hsl(150 8% 38%);
+}
+
+.ui-minimal.theme-forest .persona-search:hover {
+  background: hsl(150 10% 9%);
+  border-color: hsl(150 8% 20%);
+  color: hsl(150 10% 52%);
+}
+
+.ui-minimal.theme-forest .persona-user-panel {
+  background: hsl(150 12% 4%);
+  border-top-color: hsl(150 10% 14%);
+}
+
+.ui-minimal.theme-forest .persona-section-header {
+  color: hsl(150 8% 42%);
+}
+
+.ui-minimal.theme-forest .persona-pill {
+  background: transparent;
+  border-color: hsl(150 8% 18%);
+  color: hsl(150 8% 48%);
+}
+
+.ui-minimal.theme-forest .persona-pill:hover {
+  background: hsl(150 10% 9%);
+  border-color: hsl(150 10% 24%);
+  color: hsl(150 12% 68%);
+}
+
+.ui-minimal.theme-forest .persona-pill-active {
+  background: hsl(155 15% 42% / 0.12);
+  border-color: hsl(155 15% 42% / 0.25);
+  color: hsl(155 15% 55%);
+}
+
+.ui-minimal.theme-forest .persona-modal {
+  background: hsl(150 10% 7%);
+  border-color: hsl(150 8% 18%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px hsl(150 8% 12%);
+}
+
+.ui-minimal.theme-forest .glassmorphism-modal {
+  background: hsl(150 10% 7%);
+  border-color: hsl(150 8% 18%);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px hsl(150 8% 12%);
+}
+
+.ui-minimal.theme-forest .persona-modal-header {
+  border-bottom-color: hsl(150 8% 16%);
+}
+
+.ui-minimal.theme-forest .glassmorphism-topbar {
+  background: hsl(150 12% 5% / 0.95);
+  border-bottom-color: hsl(150 10% 14%);
+}
+
+.ui-minimal.theme-forest .topbar {
+  border-bottom-color: hsl(150 10% 14%);
+}
+
+.ui-minimal.theme-forest .persona-tab {
+  color: hsl(150 8% 48%);
+}
+
+.ui-minimal.theme-forest .persona-tab:hover {
+  color: hsl(150 12% 68%);
+  border-bottom-color: hsl(150 10% 24%);
+}
+
+.ui-minimal.theme-forest .persona-tab-active {
+  color: hsl(150 12% 85%);
+  border-bottom-color: hsl(155 15% 42%);
+}
+
+.ui-minimal.theme-forest .persona-tabs {
+  border-bottom-color: hsl(150 8% 16%);
+}
+
+.ui-minimal.theme-forest .persona-tooltip {
+  background: hsl(150 8% 12%);
+  border-color: hsl(150 8% 20%);
+  color: hsl(150 12% 80%);
+}
+
+.ui-minimal.theme-forest .persona-badge-primary {
+  background: hsl(155 15% 42% / 0.12);
+  color: hsl(155 15% 55%);
+  border-color: hsl(155 15% 42% / 0.2);
+}
+
+.ui-minimal.theme-forest .persona-badge-success {
+  background: hsl(142 72% 45% / 0.12);
+  color: hsl(142 60% 55%);
+  border-color: hsl(142 72% 45% / 0.2);
+}
+
+.ui-minimal.theme-forest .persona-badge-accent {
+  background: hsl(80 12% 45% / 0.12);
+  color: hsl(80 12% 55%);
+  border-color: hsl(80 12% 45% / 0.2);
+}
+
+.ui-minimal.theme-forest .persona-status-online::after {
+  background: hsl(142 72% 45%);
+  border-color: hsl(150 10% 9%);
+}
+
+.ui-minimal.theme-forest .persona-status-offline::after {
+  background: hsl(150 8% 28%);
+  border-color: hsl(150 10% 9%);
+}
+
+.ui-minimal.theme-forest .persona-avatar::after {
+  border-color: hsl(155 15% 42%);
+}
+
+.ui-minimal.theme-forest .persona-favourite {
+  color: hsl(80 25% 50%);
+}

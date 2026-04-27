@@ -1,0 +1,765 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        String                @id @default(cuid())
+  email                     String?               @unique
+  username                  String                @unique
+  password                  String
+  securityKey               String
+  avatarUrl                 String?
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+  role                      String                @default("member")
+  isOfficial                Boolean               @default(false)
+  isBanned                  Boolean               @default(false)
+  isSuspended               Boolean               @default(false)
+  isFrozen                  Boolean               @default(false)
+  isMuted                   Boolean               @default(false)
+  suspendedUntil            DateTime?
+  mutedUntil                DateTime?
+  warningCount              Int                   @default(0)
+  banReason                 String?
+  suspendReason             String?
+  chronos                   Int                   @default(0)
+  purchasedSlots            Int                   @default(0)
+  nameColor                 String?
+  dailyImagesUsed           Int                   @default(0)
+  dailyImagesResetAt        DateTime?
+  hasFirstPurchaseBonus     Boolean               @default(false)
+  lastDailyClaimAt          DateTime?
+  bio                       String?
+  bannerUrl                 String?
+  status                    String?
+  pronouns                  String?
+  location                  String?
+  socialLinks               String?
+  dateOfBirth               DateTime?
+  contentMaturity           String                @default("safe")
+  theme                     String                @default("dark")
+  febBoxToken               String?
+  navigationMode            String                @default("static")
+  blockedUsers              Block[]               @relation("UserBlocked")
+  blockedBy                 Block[]               @relation("UserBlockedBy")
+  chronosTransactions       ChronosTransaction[]
+  followers                 Follow[]              @relation("UserFollowers")
+  following                 Follow[]              @relation("UserFollowing")
+  sentRequests              FriendRequest[]       @relation("SentRequests")
+  receivedRequests          FriendRequest[]       @relation("ReceivedRequests")
+  friends                   Friendship[]          @relation("UserFriends")
+  friendsOf                 Friendship[]          @relation("FriendOf")
+  marketplaceListings       MarketplacePersona[]  @relation("MarketplaceCreator")
+  marketplacePurchases      MarketplacePurchase[] @relation("MarketplaceBuyer")
+  moderationActionsReceived ModerationAction[]    @relation("UserModerated")
+  moderationActionsGiven    ModerationAction[]    @relation("UserModerator")
+  notifications             Notification[]
+  personas                  Persona[]
+  ownedThemes               ProfileTheme[]        @relation("ThemeOwner")
+  ownedStorylines           Storyline[]           @relation("StorylineOwner")
+  storylineMembers          StorylineMember[]
+  storylineReviews          StorylineReview[]
+  wikiArticles              WikiArticle[]       @relation("WikiCreator")
+  wikiEdits                 WikiArticle[]       @relation("WikiEditor")
+}
+
+model Persona {
+  id                     String              @id @default(cuid())
+  displayId              BigInt?             @unique
+  userId                 String
+  originalCreatorId      String?
+  name                   String
+  avatarUrl              String?
+  bannerUrl              String?
+  isActive               Boolean             @default(false)
+  isOnline               Boolean             @default(false)
+  description            String?
+  archetype              String?
+  gender                 String?
+  pronouns               String?
+  age                    Int?
+  tags                   String?
+  personalityDescription String?
+  personalitySpectrums   String?
+  strengths              String?
+  flaws                  String?
+  values                 String?
+  fears                  String?
+  species                String?
+  likes                  String?
+  dislikes               String?
+  hobbies                String?
+  skills                 String?
+  languages              String?
+  habits                 String?
+  speechPatterns         String?
+  backstory              String?
+  appearance             String?
+  mbtiType               String?
+  bigFive                String?
+  hexaco                 String?
+  nsfwEnabled            Boolean             @default(false)
+  nsfwBodyType           String?
+  nsfwKinks              String?
+  nsfwContentWarnings    String?
+  nsfwOrientation        String?
+  nsfwRolePreference     String?
+  themeId                String?
+  themeEnabled           Boolean             @default(false)
+  rpStyle                String?
+  rpPreferredGenders     String?
+  rpGenres               String?
+  rpLimits               String?
+  rpThemes               String?
+  rpExperienceLevel      String?
+  rpResponseTime         String?
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+  conversationsAsA       Conversation[]      @relation("ConversationA")
+  conversationsAsB       Conversation[]      @relation("ConversationB")
+  receivedDmRequests     DmRequest[]         @relation("DmRequestReceiver")
+  sentDmRequests         DmRequest[]         @relation("DmRequestSender")
+  marketplaceListing     MarketplacePersona?
+  sentMessages           Message[]           @relation("MessageSender")
+  theme                  ProfileTheme?       @relation(fields: [themeId], references: [id])
+  user                   User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  connections            PersonaConnection[]
+  storylineBoosts        StorylineBoost[]
+  storylineMessages      StorylineMessage[]
+}
+
+model Conversation {
+  id            String    @id @default(cuid())
+  personaAId    String
+  personaBId    String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastMessageAt DateTime  @default(now())
+  personaA      Persona   @relation("ConversationA", fields: [personaAId], references: [id], onDelete: Cascade)
+  personaB      Persona   @relation("ConversationB", fields: [personaBId], references: [id], onDelete: Cascade)
+  messages      Message[]
+
+  @@unique([personaAId, personaBId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  senderId       String
+  content        String       @default("")
+  imageUrl       String?
+  createdAt      DateTime     @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         Persona      @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+}
+
+model FriendRequest {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  status     String   @default("pending")
+  createdAt  DateTime @default(now())
+  sender     User     @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User     @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([senderId, receiverId])
+}
+
+model Friendship {
+  id          String   @id @default(cuid())
+  userId      String
+  friendId    String
+  isFavourite Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  user        User     @relation("UserFriends", fields: [userId], references: [id], onDelete: Cascade)
+  friend      User     @relation("FriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, friendId])
+}
+
+model DmRequest {
+  id           String   @id @default(cuid())
+  senderId     String
+  receiverId   String
+  firstMessage String
+  imageUrl     String?
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  receiver     Persona  @relation("DmRequestReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender       Persona  @relation("DmRequestSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@unique([senderId, receiverId])
+  @@index([receiverId])
+  @@index([status])
+}
+
+model Block {
+  id        String   @id @default(cuid())
+  blockerId String
+  blockedId String
+  createdAt DateTime @default(now())
+  blocker   User     @relation("UserBlocked", fields: [blockerId], references: [id], onDelete: Cascade)
+  blocked   User     @relation("UserBlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@unique([blockerId, blockedId])
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  follower    User     @relation("UserFollowers", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("UserFollowing", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+}
+
+model Storyline {
+  id              String                   @id @default(cuid())
+  ownerId         String
+  name            String
+  description     String?
+  lore            String?
+  iconUrl         String?
+  bannerUrl       String?
+  category        String
+  tags            String?
+  accentColor     String?                  @default("#8b5cf6")
+  welcomeMessage  String?
+  memberCap       Int?
+  requireApproval Boolean                  @default(false)
+  boostChronos    Int                      @default(0)
+  boostTier       Int                      @default(0)
+  isPublic        Boolean                  @default(true)
+  isAdult         Boolean                  @default(false)
+  isOfficial      Boolean                  @default(false)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  owner           User                     @relation("StorylineOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  bans            StorylineBan[]
+  boosts          StorylineBoost[]
+  categories      StorylineCategory[]
+  channels        StorylineChannel[]
+  invites         StorylineInvite[]
+  members         StorylineMember[]
+  pinnedMessages  StorylinePinnedMessage[]
+  reviews         StorylineReview[]
+  roles           StorylineRole[]
+  wikiArticles    WikiArticle[]
+
+  @@index([category])
+}
+
+model StorylineCategory {
+  id          String             @id @default(cuid())
+  storylineId String
+  name        String
+  position    Int                @default(0)
+  collapsed   Boolean            @default(false)
+  createdAt   DateTime           @default(now())
+  storyline   Storyline          @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+  channels    StorylineChannel[]
+
+  @@unique([storylineId, name])
+  @@index([storylineId])
+}
+
+model StorylineChannel {
+  id          String                       @id @default(cuid())
+  storylineId String
+  categoryId  String?
+  name        String
+  type        String                       @default("text")
+  position    Int                          @default(0)
+  slowMode    Int?                         @default(0)
+  topic       String?
+  locked      Boolean                      @default(false)
+  createdAt   DateTime                     @default(now())
+  category    StorylineCategory?           @relation(fields: [categoryId], references: [id])
+  storyline   Storyline                    @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+  permissions StorylineChannelPermission[]
+  messages    StorylineMessage[]
+  threads     StorylineThread[]
+  mutedBy     StorylineChannelMute[]
+  unreadBy    StorylineChannelUnread[]
+
+  @@unique([storylineId, name])
+  @@index([storylineId])
+}
+
+model StorylineChannelPermission {
+  id        String           @id @default(cuid())
+  channelId String
+  roleId    String
+  canView   Boolean          @default(true)
+  canSend   Boolean          @default(true)
+  role      StorylineRole    @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  channel   StorylineChannel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, roleId])
+}
+
+model StorylineMember {
+  id          String         @id @default(cuid())
+  storylineId String
+  userId      String
+  roleId      String?
+  role        String         @default("member")
+  joinedAt    DateTime       @default(now())
+  customRole  StorylineRole? @relation(fields: [roleId], references: [id])
+  storyline   Storyline      @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([storylineId, userId])
+  @@index([storylineId])
+}
+
+model StorylineRole {
+  id                 String                       @id @default(cuid())
+  storylineId        String
+  name               String
+  color              String                       @default("#8b5cf6")
+  position           Int                          @default(0)
+  canManageChannels  Boolean                      @default(false)
+  canManageRoles     Boolean                      @default(false)
+  canKickMembers     Boolean                      @default(false)
+  canBanMembers      Boolean                      @default(false)
+  canManageMessages  Boolean                      @default(false)
+  canInvite          Boolean                      @default(true)
+  canChangeSettings  Boolean                      @default(false)
+  isAdmin            Boolean                      @default(false)
+  createdAt          DateTime                     @default(now())
+  updatedAt          DateTime                     @updatedAt
+  channelPermissions StorylineChannelPermission[]
+  members            StorylineMember[]
+  storyline          Storyline                    @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+
+  @@unique([storylineId, name])
+  @@index([storylineId])
+}
+
+model StorylineInvite {
+  id          String    @id @default(cuid())
+  storylineId String
+  code        String    @unique
+  createdById String
+  maxUses     Int?
+  uses        Int       @default(0)
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  storyline   Storyline @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+
+  @@index([storylineId])
+  @@index([code])
+}
+
+model StorylineBan {
+  id          String    @id @default(cuid())
+  storylineId String
+  userId      String
+  bannedById  String
+  reason      String?
+  createdAt   DateTime  @default(now())
+  storyline   Storyline @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+
+  @@unique([storylineId, userId])
+  @@index([storylineId])
+}
+
+model StorylineMessage {
+  id        String                     @id @default(cuid())
+  channelId String
+  senderId  String
+  content   String                     @default("")
+  imageUrl  String?
+  editedAt  DateTime?
+  replyToId String?
+  createdAt DateTime                   @default(now())
+  sender    Persona                    @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  channel   StorylineChannel           @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  replyTo   StorylineMessage?          @relation("MessageReplies", fields: [replyToId], references: [id], onDelete: SetNull)
+  replies   StorylineMessage[]         @relation("MessageReplies")
+  reactions StorylineMessageReaction[]
+  pinnedBy  StorylinePinnedMessage[]
+  threads   StorylineThread[]
+
+  @@index([channelId])
+  @@index([senderId])
+  @@index([replyToId])
+}
+
+model StorylineMessageReaction {
+  id        String           @id @default(cuid())
+  messageId String
+  userId    String
+  emoji     String
+  createdAt DateTime         @default(now())
+  message   StorylineMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId, emoji])
+  @@index([messageId])
+}
+
+model StorylinePinnedMessage {
+  id          String           @id @default(cuid())
+  storylineId String
+  messageId   String
+  pinnedById  String
+  createdAt   DateTime         @default(now())
+  message     StorylineMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  storyline   Storyline        @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+
+  @@unique([storylineId, messageId])
+  @@index([storylineId])
+}
+
+model StorylineBoost {
+  id          String    @id @default(cuid())
+  storylineId String
+  personaId   String
+  amount      Int
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  persona     Persona   @relation(fields: [personaId], references: [id], onDelete: Cascade)
+  storyline   Storyline @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+
+  @@index([storylineId])
+  @@index([personaId])
+  @@index([expiresAt])
+}
+
+model StorylineReview {
+  id          String    @id @default(cuid())
+  storylineId String
+  userId      String
+  rating      Int
+  content     String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  storyline   Storyline @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([storylineId, userId])
+  @@index([storylineId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model PersonaConnection {
+  id               String   @id @default(cuid())
+  personaId        String
+  characterName    String
+  relationshipType String
+  specificRole     String?
+  characterAge     Int?
+  description      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  persona          Persona  @relation(fields: [personaId], references: [id], onDelete: Cascade)
+
+  @@index([personaId])
+}
+
+model ProfileTheme {
+  id              String    @id @default(cuid())
+  name            String
+  description     String?
+  previewUrl      String?
+  background      String?
+  borderColor     String?
+  textColor       String?
+  accentColor     String?
+  backgroundImage String?
+  price           Int       @default(100)
+  isSystem        Boolean   @default(true)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  ownerId         String?
+  personas        Persona[]
+  owner           User?     @relation("ThemeOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([isActive])
+}
+
+model ChronosTransaction {
+  id          String   @id @default(cuid())
+  userId      String
+  amount      Int
+  balance     Int
+  type        String
+  category    String
+  description String
+  referenceId String?
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model Report {
+  id           String    @id @default(cuid())
+  reporterId   String
+  reportedId   String?
+  type         String
+  reason       String
+  details      String?
+  status       String    @default("pending")
+  referenceId  String?
+  reviewedById String?
+  reviewedAt   DateTime?
+  reviewNote   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model AdminLog {
+  id         String   @id @default(cuid())
+  adminId    String
+  action     String
+  targetType String
+  targetId   String?
+  details    String?
+  createdAt  DateTime @default(now())
+
+  @@index([adminId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String
+  title       String
+  message     String
+  data        String?
+  isRead      Boolean  @default(false)
+  isDismissed Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+model MarketplacePersona {
+  id               String                @id @default(cuid())
+  personaId        String                @unique
+  creatorId        String
+  name             String
+  avatarUrl        String?
+  description      String?
+  tags             String?
+  price            Int                   @default(0)
+  downloads        Int                   @default(0)
+  revenue          Int                   @default(0)
+  isActive         Boolean               @default(true)
+  isFeatured       Boolean               @default(false)
+  notifyOnPurchase Boolean               @default(true)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  creator          User                  @relation("MarketplaceCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  persona          Persona               @relation(fields: [personaId], references: [id], onDelete: Cascade)
+  purchases        MarketplacePurchase[]
+
+  @@index([creatorId])
+  @@index([isActive])
+  @@index([price])
+  @@index([downloads])
+  @@index([createdAt])
+}
+
+model MarketplacePurchase {
+  id                   String             @id @default(cuid())
+  marketplacePersonaId String
+  buyerId              String
+  pricePaid            Int
+  creatorEarnings      Int
+  copiedPersonaId      String?
+  createdAt            DateTime           @default(now())
+  buyer                User               @relation("MarketplaceBuyer", fields: [buyerId], references: [id], onDelete: Cascade)
+  marketplacePersona   MarketplacePersona @relation(fields: [marketplacePersonaId], references: [id], onDelete: Cascade)
+
+  @@unique([marketplacePersonaId, buyerId])
+  @@index([buyerId])
+  @@index([createdAt])
+}
+
+model ModerationAction {
+  id         String    @id @default(cuid())
+  adminId    String
+  targetId   String
+  action     String
+  targetType String    @default("user")
+  reason     String?
+  duration   Int?
+  notes      String?
+  createdAt  DateTime  @default(now())
+  expiresAt  DateTime?
+  target     User      @relation("UserModerated", fields: [targetId], references: [id], onDelete: Cascade)
+  admin      User      @relation("UserModerator", fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([targetId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+// ========================================
+// Achievement & Badge System
+// ========================================
+
+model Achievement {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  description String
+  icon        String
+  category    String   @default("general")
+  tier        Int      @default(1)
+  requirement Int      @default(1)
+  isHidden    Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  userAchievements UserAchievement[]
+
+  @@index([category])
+  @@index([key])
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  userId        String
+  achievementId String
+  progress      Int         @default(0)
+  completed     Boolean     @default(false)
+  completedAt   DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  achievement Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([completed])
+}
+
+// ========================================
+// Wiki / Knowledge Base System
+// ========================================
+
+model StorylineThread {
+  id          String           @id @default(cuid())
+  channelId   String
+  messageId   String
+  name        String
+  createdById String
+  isArchived  Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  channel     StorylineChannel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  message     StorylineMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  messages    StorylineThreadMessage[]
+
+  @@index([channelId])
+  @@index([messageId])
+}
+
+model StorylineThreadMessage {
+  id        String          @id @default(cuid())
+  threadId  String
+  senderId  String
+  content   String          @default("")
+  imageUrl  String?
+  createdAt DateTime        @default(now())
+  thread    StorylineThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId])
+}
+
+model StorylineChannelMute {
+  id        String           @id @default(cuid())
+  channelId String
+  userId    String
+  createdAt DateTime        @default(now())
+  channel   StorylineChannel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, userId])
+  @@index([userId])
+}
+
+model StorylineChannelUnread {
+  id           String           @id @default(cuid())
+  channelId    String
+  userId       String
+  lastReadAt   DateTime        @default(now())
+  hasUnread    Boolean          @default(false)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  channel      StorylineChannel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, userId])
+  @@index([userId])
+}
+
+model WikiArticle {
+  id              String   @id @default(cuid())
+  storylineId     String
+  title           String
+  slug            String
+  content         String   @default("")
+  category        String   @default("General")
+  createdById     String
+  lastEditedBy    String?
+  isPinned        Boolean  @default(false)
+  position        Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  storyline       Storyline @relation(fields: [storylineId], references: [id], onDelete: Cascade)
+  createdBy       User      @relation("WikiCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  lastEditedByUser User?    @relation("WikiEditor", fields: [lastEditedBy], references: [id])
+
+  @@unique([storylineId, slug])
+  @@index([storylineId])
+  @@index([category])
+  @@index([isPinned])
+}
+
+// ========================================
+// Discord Image Storage System
+// ========================================
+
+model ImageRecord {
+  id         String   @id @default(cuid())
+  code       String   @unique
+  url        String
+  discordUrl String
+  fileName   String
+  fileType   String
+  fileSize   Int
+  uploadedBy String
+  uploadType String   @default("avatar")
+  createdAt  DateTime @default(now())
+
+  @@index([code])
+  @@index([uploadedBy])
+  @@index([createdAt])
+}

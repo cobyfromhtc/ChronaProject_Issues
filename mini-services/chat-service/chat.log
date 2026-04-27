@@ -1,0 +1,10 @@
+$ bun --hot index.ts
+==================================================
+Chrona Chat Service
+==================================================
+Environment: development
+Port: 3003
+Allowed CORS Origins: http://localhost:3000, http://127.0.0.1:3000
+==================================================
+Chat WebSocket server running on port 3003
+Ready to accept connections!

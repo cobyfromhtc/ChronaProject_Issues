@@ -1,0 +1,275 @@
+/* ========================================
+   Horizon Layout — Top-nav SaaS Style
+   Blue/Steel accent, flat design, clean lines
+   ======================================== */
+
+.ui-horizon {
+  --horizon-primary: 220 90% 56%;
+  --horizon-primary-dim: 220 70% 40%;
+  --horizon-surface: 218 24% 6%;
+  --horizon-surface-elevated: 218 22% 9%;
+  --horizon-border: 220 20% 16%;
+}
+
+/* Horizon overrides for persona components */
+.ui-horizon .persona-card {
+  background: linear-gradient(135deg, hsl(218 22% 9% / 0.95) 0%, hsl(220 20% 12% / 0.95) 100%);
+  border-radius: 0.625rem;
+}
+
+.ui-horizon .persona-card::before {
+  background: linear-gradient(90deg, transparent, hsl(220 90% 56% / 0.3), transparent);
+}
+
+.ui-horizon .persona-card-hover:hover {
+  border-color: hsl(220 90% 56% / 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px hsl(220 90% 56% / 0.06);
+}
+
+.ui-horizon .persona-glass {
+  background: hsl(218 22% 9% / 0.8);
+  backdrop-filter: blur(16px);
+}
+
+.ui-horizon .btn-persona {
+  background: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(215 80% 48%) 100%);
+  border-radius: 0.5rem;
+}
+
+.ui-horizon .btn-persona:hover {
+  box-shadow: 0 6px 20px hsl(220 90% 56% / 0.2);
+}
+
+.ui-horizon .persona-gradient-text {
+  background: linear-gradient(135deg, hsl(220 90% 56%), hsl(215 80% 48%), hsl(230 70% 55%));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ui-horizon .persona-nav-item::before {
+  background: linear-gradient(180deg, hsl(220 90% 56%), hsl(215 80% 48%));
+}
+
+.ui-horizon .persona-modal {
+  background: rgba(14, 17, 24, 0.9);
+  border-radius: 0.75rem;
+}
+
+.ui-horizon .persona-input {
+  border-radius: 0.5rem;
+}
+
+.ui-horizon .persona-pill {
+  border-radius: 0.375rem;
+}
+
+.ui-horizon .persona-pill-active {
+  background: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(215 80% 48%) 100%);
+}
+
+.ui-horizon .persona-tabs {
+  border-radius: 0.5rem;
+}
+
+.ui-horizon .persona-tab-active {
+  background: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(215 80% 48%) 100%);
+  color: white;
+  box-shadow: 0 2px 12px hsl(220 90% 56% / 0.3);
+}
+
+.ui-horizon .persona-tab-active:hover {
+  background: linear-gradient(135deg, hsl(220 90% 60%) 0%, hsl(215 80% 52%) 100%);
+  box-shadow: 0 4px 16px hsl(220 90% 56% / 0.4);
+}
+
+.ui-horizon .persona-tab-active:focus-visible {
+  outline: 2px solid hsl(220 90% 56%);
+  outline-offset: 2px;
+}
+
+/* Horizon-specific scrollbar */
+.ui-horizon ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(220 70% 50%), hsl(215 60% 42%));
+}
+
+.ui-horizon ::-webkit-scrollbar-track {
+  background: hsl(220 90% 56% / 0.05);
+}
+
+/* Horizon theme overrides */
+.ui-horizon.theme-midnight .persona-card {
+  background: linear-gradient(135deg, hsl(240 28% 9% / 0.95) 0%, hsl(245 22% 12% / 0.95) 100%);
+}
+
+.ui-horizon.theme-forest .persona-card {
+  background: linear-gradient(135deg, hsl(150 22% 9% / 0.95) 0%, hsl(155 18% 12% / 0.95) 100%);
+}
+
+.ui-horizon.theme-light .persona-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 243, 247, 0.92) 100%);
+}
+
+/* ========================================
+   Horizon Tab Styles - Consistent Blue Theme
+   ======================================== */
+
+.ui-horizon .persona-tab {
+  color: hsl(215 20% 65%);
+  transition: all 0.2s ease;
+}
+
+.ui-horizon .persona-tab:hover {
+  background: hsl(220 90% 56% / 0.1);
+  color: hsl(215 20% 85%);
+}
+
+.ui-horizon .persona-tab:focus-visible {
+  outline: 2px solid hsl(220 90% 56%);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Horizon Button Styles
+   ======================================== */
+
+.ui-horizon .btn-persona {
+  background: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(215 80% 48%) 100%);
+  transition: all 0.2s ease;
+}
+
+.ui-horizon .btn-persona:hover {
+  box-shadow: 0 4px 16px hsl(220 90% 56% / 0.3);
+  transform: translateY(-1px);
+}
+
+.ui-horizon .btn-persona:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px hsl(220 90% 56% / 0.2);
+}
+
+.ui-horizon .btn-persona:focus-visible {
+  outline: 2px solid hsl(220 90% 56%);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Horizon Empty State Styles
+   ======================================== */
+
+.ui-horizon .persona-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.ui-horizon .persona-empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  background: hsl(220 90% 56% / 0.1);
+  border: 1px solid hsl(220 90% 56% / 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.ui-horizon .persona-empty-state-icon svg {
+  width: 2rem;
+  height: 2rem;
+  color: hsl(220 90% 60%);
+}
+
+.ui-horizon .persona-empty-state-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(215 20% 85%);
+  margin-bottom: 0.25rem;
+}
+
+.ui-horizon .persona-empty-state-subtitle {
+  font-size: 0.875rem;
+  color: hsl(215 15% 55%);
+  max-width: 20rem;
+}
+
+/* ========================================
+   Horizon Text Contrast Improvements
+   ======================================== */
+
+.ui-horizon .text-muted {
+  color: hsl(215 15% 55%);
+}
+
+.ui-horizon .text-subtle {
+  color: hsl(215 10% 45%);
+}
+
+/* Better contrast for secondary text on dark backgrounds */
+.ui-horizon .persona-card .text-slate-400 {
+  color: hsl(215 15% 60%) !important;
+}
+
+.ui-horizon .persona-card .text-slate-500 {
+  color: hsl(215 10% 50%) !important;
+}
+
+/* ========================================
+   Horizon Interactive Element States
+   ======================================== */
+
+.ui-horizon .persona-interactive {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ui-horizon .persona-interactive:hover {
+  background: hsl(220 90% 56% / 0.08);
+}
+
+.ui-horizon .persona-interactive:active {
+  background: hsl(220 90% 56% / 0.15);
+}
+
+.ui-horizon .persona-interactive:focus-visible {
+  outline: 2px solid hsl(220 90% 56%);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Horizon Notification Badge - Blue Theme
+   ======================================== */
+
+.ui-horizon .persona-notification-badge {
+  background: hsl(220 90% 56%);
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 700;
+  min-width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Horizon Focus Visible Styles (Accessibility)
+   ======================================== */
+
+.ui-horizon button:focus-visible,
+.ui-horizon a:focus-visible,
+.ui-horizon input:focus-visible,
+.ui-horizon select:focus-visible,
+.ui-horizon textarea:focus-visible {
+  outline: 2px solid hsl(220 90% 56%);
+  outline-offset: 2px;
+}
+
+.ui-horizon button:focus:not(:focus-visible),
+.ui-horizon a:focus:not(:focus-visible) {
+  outline: none;
+}
